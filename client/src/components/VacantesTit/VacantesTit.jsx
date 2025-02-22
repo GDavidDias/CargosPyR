@@ -647,13 +647,15 @@ const VacantesTit = () => {
                                     <th className="border-r-[1px] border-zinc-300">ID</th>
                                     <th className="border-r-[1px] border-zinc-300">Orden</th>
                                     <th className="border-r-[1px] border-zinc-300">Establecimiento</th>
-                                    <th className="border-r-[1px] border-zinc-300">Mapa</th>
+                                    {/* <th className="border-r-[1px] border-zinc-300">Mapa</th> */}
                                     <th className="border-r-[1px] border-zinc-300">Cargo</th>
                                     <th className="border-r-[1px] border-zinc-300">Modalidad</th>
                                     <th className="border-r-[1px] border-zinc-300">Turno</th>
                                     <th className="border-r-[1px] border-zinc-300">Region</th>
                                     <th className="border-r-[1px] border-zinc-300">Localidad</th>
                                     <th className="border-r-[1px] border-zinc-300">Zona</th>
+                                    <th className="border-r-[1px] border-zinc-300">Caracter</th>
+                                    <th className="border-r-[1px] border-zinc-300">Hasta</th>
                                     <th className="">Acciones</th>
                                 </tr>
                             </thead>
@@ -675,19 +677,21 @@ const VacantesTit = () => {
                                                     <span className="text-red-500">{vacante.nro_establecimiento}</span> - 
                                                     <span>{vacante.nombre_establecimiento}</span>
                                                 </td>
-                                                <td 
+                                                {/* <td 
                                                     className="flex justify-center mt-2 text-blue-600 hover:scale-125 transition-all duration-500 cursor-pointer"
                                                 >
                                                     <a href={vacante.link_map} target="_blank" rel="noopener noreferrer">
                                                         <SiGooglemaps className="" />
                                                     </a>
-                                                </td>
+                                                </td> */}
                                                 <td className="text-center">{vacante.cargo}</td>
                                                 <td className="text-center">{vacante.modalidad}</td>
                                                 <td className="text-center">{vacante.turno}</td>
-                                                <td className="text-center w-[10vw]">{vacante.region}</td>
+                                                <td className="text-center w-[4vw]">{vacante.region}</td>
                                                 <td className="text-center">{vacante.localidad}</td>
                                                 <td className="text-center">{vacante.zona}</td>
+                                                <td className="text-center text-base font-light">{vacante.caracter}</td>
+                                                <td className="text-center">{vacante.hasta ?new Date(vacante.hasta).toLocaleDateString('es-ES') :""}</td>
                                                 <td>
                                                     <div className="flex flex-row items-center justify-center  ">
                                                         <FaEye 

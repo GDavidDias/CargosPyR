@@ -8,7 +8,7 @@ const ContentModalAsignacionTit = ({closeModalAsign,datosInscriptoSelect,datosVa
                     className="text-2xl text-center font-bold " 
                     translate='no'
                 >
-                ASIGNACION VACANTE TITULARIZACION
+                ASIGNACION VACANTE
                 </label>
                 {/* DATOS DEL INSCRIPTO */}
                 <div className="border-[1px] border-purple-400 flex flex-col justify-center rounded-md shadow font-semibold text-2xl bg-purple-100 m-4">
@@ -44,45 +44,54 @@ const ContentModalAsignacionTit = ({closeModalAsign,datosInscriptoSelect,datosVa
             
                     {/* CARGO A TOMAR */}
                     <div className="flex flex-col border-[5px] border-emerald-500 w-[85%] items-center  ml-[9px] rounded-md shadow-lg bg-emerald-100">
-                        <div className="flex items-center">
-                            <label className="font-bold text-3xl m-2">Datos de Vacante</label>
+                        <div className="flex items-center ">
+                            <label className="font-bold text-2xl m-2">Datos de Vacante</label>
+                            <label className="font-bold text-2xl text-red-400 blink">{datosVacanteSelect.caracter}</label>
                         </div>
                         <div className="flex flex-col items-end text-2xl">
-                            <div className="flex flex-row my-1">
+                            <div className="flex flex-row my-[1px]">
                                 <label className="mb-0 font-semibold  mr-2">N° Establecimiento</label>
                                 <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[4vh] pl-[4px] bg-neutral-50">{datosVacanteSelect.nro_establecimiento}</div>
                             </div>
-                            <div className="flex flex-row my-1">
+                            <div className="flex flex-row my-[2px]">
                                 <label className="mb-0 font-semibold  mr-2">Establecimiento</label>
                                 <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[8vh] pl-[4px] bg-neutral-50 text-xl">{datosVacanteSelect.nombre_establecimiento}</div>
                             </div>
-                            <div className="flex flex-row my-1">
+                            <div className="flex flex-row my-[2px]">
                                 <label className="font-semibold  mr-2">Cargo</label>
                                 <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[4vh] pl-[4px] bg-neutral-50">{datosVacanteSelect.cargo}</div>
                             </div>
-                            <div className="flex flex-row my-1">
+                            <div className="flex flex-row my-[2px]">
                                 <label className="font-semibold  mr-2">Modalidad</label>
                                 <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[4vh] pl-[4px] bg-neutral-50">{datosVacanteSelect.modalidad}</div>
                             </div>
-                            <div className="flex flex-row my-1">
+                            <div className="flex flex-row my-[2px]">
                                 <label className="font-semibold  mr-2">Turno</label>
                                 <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[4vh] pl-[4px] bg-neutral-50">{datosVacanteSelect.turno}</div>
                             </div>
-                            <div className="flex flex-row my-1">
+                            <div className="flex flex-row my-[2px]">
                                 <label className="font-semibold  mr-2">Region</label>
                                 <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[4vh] pl-[4px] bg-neutral-50">{datosVacanteSelect.region}</div>
                             </div>
-                            <div className="flex flex-row my-1">
+                            <div className="flex flex-row my-[2px]">
                                 <label className="font-semibold  mr-2">Departamento</label>
                                 <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[4vh] pl-[4px] bg-neutral-50">{datosVacanteSelect.departamento}</div>
                             </div>
-                            <div className="flex flex-row my-1">
+                            <div className="flex flex-row my-[2px]">
                                 <label className="font-semibold  mr-2">Localidad</label>
                                 <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[4vh] pl-[4px] bg-neutral-50">{datosVacanteSelect.localidad}</div>
                             </div>
-                            <div className="flex flex-row mt-2 mb-4">
+                            <div className="flex flex-row my-[2px]">
                                 <label className="font-semibold  mr-2">Zona</label>
                                 <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[4vh] pl-[4px] bg-neutral-50">{datosVacanteSelect.zona}</div>
+                            </div>
+                            <div className="flex flex-row my-[2px]">
+                                <label className="font-semibold  mr-2">Hasta</label>
+                                <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[4vh] pl-[4px] bg-neutral-50">{datosVacanteSelect.hasta ? (() => {
+                                    const fecha = new Date(datosVacanteSelect.hasta).toLocaleDateString('es-ES');
+                                        return fecha === '1/1/2000' ? '' : fecha;
+                                        })() : ''}
+                                </div>
                             </div>
                         </div>
                     </div>

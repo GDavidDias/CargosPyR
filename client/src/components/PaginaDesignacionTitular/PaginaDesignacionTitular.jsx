@@ -94,7 +94,7 @@ const PaginaDesignacionTitular = ({datosInscripto, datosVacante,id_nivel}) =>{
                         <p>NUMERO DE CARGO: </p>
                         <p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.orden}</p>
                         <p>MOVIMIENTO:</p>
-                        <p className='border-b-[1px] border-black w-[200px] text-center'>Titularización</p>
+                        <p className='border-b-[1px] border-black w-[200px] text-center'>{datosVacante.caracter}</p>
                     </div>
                     <div className='flex flex-row mt-[2px]'>
                     </div>
@@ -108,9 +108,17 @@ const PaginaDesignacionTitular = ({datosInscripto, datosVacante,id_nivel}) =>{
                     </div>
                     <div className='flex flex-row mt-[2px]'>
                         <p>TURNO:</p>
-                        <p className='border-b-[1px] border-black w-[200px] text-center'>{datosVacante.turno}</p>
+                        <p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.turno}</p>
                         <p>CUPOF:</p>
                         <p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.cupof}</p>
+                        <p>DESDE:</p>
+                        <p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.desde ? new Date(datosVacante.desde).toLocaleDateString('es-ES') : ''}</p>
+                        <p>HASTA:</p>
+                        <p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.hasta ? (() => {
+                                const fecha = new Date(datosVacante.hasta).toLocaleDateString('es-ES');
+                                return fecha === '1/1/2000' ? '' : fecha;
+                            })() : ''}
+                        </p>
 
                     </div>
                 </div>

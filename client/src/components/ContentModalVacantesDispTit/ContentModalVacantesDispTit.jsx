@@ -100,8 +100,8 @@ const ContentModalVacantesDispTit = ({datosInscriptoSelect,submitCloseModalVac,l
                         <div className="flex flex-col items-center justify-end w-[2vw] border-r-[1px] border-zinc-200 hover:text-sky-500">
                             <label className="font-base">ID</label>
                         </div>
-                        <div className="flex flex-col items-center justify-end w-[15vw] border-r-[1px] border-zinc-200">
-                            <label className="font-semibold">N° Establecimiento</label>
+                        <div className="flex flex-col items-center justify-end w-[8vw] border-r-[1px] border-zinc-200">
+                            <label className="font-semibold">N° Est.</label>
                             {/* <LuArrowUpDown className="ml-2"/> */}
                         </div>
                         <div className="flex flex-col items-center justify-end w-[10vw] border-r-[1px] border-zinc-200">
@@ -113,15 +113,16 @@ const ContentModalVacantesDispTit = ({datosInscriptoSelect,submitCloseModalVac,l
                             {/* <LuArrowUpDown className="ml-2"/> */}
                         </div>
                         <div className="flex flex-col items-center justify-end w-[10vw] border-r-[1px] border-zinc-200">
-                            
                             <label className="font-semibold">Turno</label>
-                            {/* <LuArrowUpDown className="ml-2"/> */}
+                        </div>
+                        <div className="flex flex-col items-center justify-end w-[10vw] border-r-[1px] border-zinc-200">
+                            <label className="font-semibold">Caracter</label>
                         </div>
                         <div className="flex flex-col items-center justify-center w-[10vw] border-r-[1px] border-zinc-200">
                             {/**Filtro de Region */}
                             <div className="border-[1px]  h-[26px] rounded border-zinc-400 bg-neutral-50 desktop-xl:h-[30px] flex flex-row">
                                 <select 
-                                    className="w-[7vw] h-[24px] border-[1px] rounded focus:outline-none focus:ring-0 focus:border-none desktop-xl:text-lg"
+                                    className="w-[5vw] h-[24px] border-[1px] rounded focus:outline-none focus:ring-0 focus:border-none desktop-xl:text-lg"
                                     name="filtroRegion"
                                     onChange={handleSelectFiltroRegion}
                                     value={filtroRegionVac}
@@ -155,7 +156,7 @@ const ContentModalVacantesDispTit = ({datosInscriptoSelect,submitCloseModalVac,l
                         </div>
                         <div className="flex flex-col items-center justify-center w-[8vw] ">
                             {/**Filtro de Modalidad */}
-                            <div className="border-[1px]  h-[26px] rounded border-zinc-400 bg-neutral-50 desktop-xl:h-[30px]">
+                            <div className="flex flex-row border-[1px]  h-[26px] rounded border-zinc-400 bg-neutral-50 desktop-xl:h-[30px]">
                                 <select
                                     className="w-[5vw] h-[24px] border-[1px] rounded focus:outline-none focus:ring-0 focus:border-none desktop-xl:text-lg"
                                     name="filtroModalida"
@@ -175,6 +176,9 @@ const ContentModalVacantesDispTit = ({datosInscriptoSelect,submitCloseModalVac,l
                                 }
                             </div>
                             <label className="font-semibold">Modalidad</label>
+                        </div>
+                        <div className="flex flex-col items-center justify-end w-[10vw] border-r-[1px] border-zinc-200">
+                            <label className="font-semibold">Hasta</label>
                         </div>
                         <div className="flex flex-col items-center justify-end w-[8vw] ">
                             {/**<button 
@@ -200,14 +204,24 @@ const ContentModalVacantesDispTit = ({datosInscriptoSelect,submitCloseModalVac,l
                                         >
                                             <td className="w-[2vw] pl-[8px] font-semibold text-sky-500">{vacante.id_vacante_tit
                                             }</td>
-                                            <td className="w-[15vw] pl-[4px] text-center">{vacante.nro_establecimiento}</td>
+                                            <td className="w-[8vw] pl-[4px] text-center">{vacante.nro_establecimiento}</td>
                                             <td className="w-[10vw] pl-[4px] text-center">{vacante.nombre_establecimiento}</td>
                                             <td className="w-[10vw] pl-[4px] text-center">{vacante.cargo}</td>
                                             <td className="w-[10vw] pl-[4px] text-center">{vacante.turno}</td>
+                                            <td className="w-[6vw] pl-[4px] text-center font-semibold">
+                                                <p className="w-[6vw] text-base overflow-hidden text-ellipsis">
+                                                    {vacante.caracter}
+                                                </p>
+                                                </td>
                                             <td className="w-[10vw] pl-[4px] text-center">{vacante.region}</td>
                                             <td className="w-[10vw] pl-[4px] text-center">{vacante.departamento}</td>
                                             <td className="w-[10vw] pl-[4px] text-center">{vacante.localidad}</td>
                                             <td className="w-[8vw] pl-[4px] text-center">{vacante.modalidad}</td>
+                                            <td className="w-[8vw] pl-[4px] text-center text-red-500">{vacante.hasta ? (() => {
+                                                const fecha = new Date(vacante.hasta).toLocaleDateString('es-ES');
+                                                    return fecha === '1/1/2000' ? '' : fecha;
+                                                    })() : ''}
+                                        </td>
                                             
                                             <td className="w-[8vw]">
                                                 <div className="flex flex-row items-center justify-center">

@@ -249,7 +249,7 @@ const ListadosTit = () => {
                 <div className="w-[55vw] flex justify-center items-start flex-col">
                     <label className="ml-4 text-base font-semibold">NIVEL {configSG.nivel.descripcion}</label>
                     <div className="flex flex-row">
-                        <label className="ml-4 text-lg font-sans font-bold">LISTADOS Y REPORTES TITULARIZACION</label>
+                        <label className="ml-4 text-lg font-sans font-bold">LISTADOS Y REPORTES</label>
                     </div>
                 </div>
                 {/* SECCION DATOS USUARIO */}

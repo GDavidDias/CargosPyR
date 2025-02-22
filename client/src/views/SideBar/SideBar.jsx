@@ -297,7 +297,8 @@ const SideBar = () => {
                 <div className="ml-2 mt-6 text-white text-base">
                     {/**TITULO TRASLADOS Y CAMBIO DE FUNCION */}
                     {!(configCompSG[3]?.active==="" && configCompSG[4]?.active==="" && configCompSG[5]?.active==="") &&
-                        <label className="font-normal desktop-xl:text-lg">Titularizacion</label>
+                        // <label className="font-normal desktop-xl:text-lg">Titularizacion</label>
+                        <label className="font-normal desktop-xl:text-lg">Provisional y Reemplazantes</label>
                     }
 
                     {/**ENLACE A INSCRIPTOS */}
@@ -385,7 +386,7 @@ const SideBar = () => {
                 {/* MENU PROVISIONALES Y REEMPLAZANTES */}
                 <div className="ml-2 mt-6 text-white text-base">
                     {/**TITULO TRASLADOS Y CAMBIO DE FUNCION */}
-                    {!(configCompSG[8]?.active==="" && configCompSG[9]?.active==="" && configCompSG[10]?.active==="") &&
+                    {!(configCompSG[8]?.active==="" && configCompSG[9]?.active==="") &&
                         <label className="font-normal desktop-xl:text-lg">Provisionales y Reemplazantes</label>
                     }
                     {/**ENLACE A INSCRIPTOS DE PROVISIONAL Y REEMPLAZANTES */}

@@ -382,7 +382,8 @@ const InscriptosTit = () =>{
     //?-------------------------------------
     //?--------PROCESO ASIGNACION-----------
     const submitVerAsignacion = async(datosVacanteSeleccionada)=>{
-        //console.log('presiono ver la asignacion');
+        console.log('presiono ver la asignacion');
+        console.log('que tiene datos Vacante seleccionada: ', datosVacanteSeleccionada);
         setDatosVacante(datosVacanteSeleccionada);
         openModalAsign();
     };
