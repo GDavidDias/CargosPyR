@@ -176,21 +176,34 @@ const ListadosTit = () => {
         return `${day}/${month}/${year} - ${hours}:${minutes}:${seconds}`;
       };
 
+    function formatDateOnly(dateString) {
+        const date = new Date(dateString);
+        
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Los meses empiezan desde 0
+        const year = date.getFullYear();
+      
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+      
+        return `${day}/${month}/${year}`;
+      };
+
     function formateaListadoAsignacionesRealizadas (datos){
         const datosformat = datos.map(objeto=>({
             'Dni':objeto.dni, 
             'Total':objeto.total, 
             'Nombre':objeto.apellido, 
-            'Observacion':objeto.observacion, 
-            'N° Escuela Actual':objeto.nro_escuela_actual, 
-            'Cargo Actual':objeto.cargo_actual, 
-            'Cargo Solicitado':objeto.cargo_solicitado, 
             'Fecha y Hora Designacion':formatDateTime(objeto.datetime_asignacion),
             'Cargo que Toma':objeto.cargo_toma, 
             'Turno':objeto.turno,
             'Modalidad':objeto.modalidad,
+            'Caracter':objeto.caracter,
+            'Desde':formatDateOnly(objeto.desde),
+            'Hasta':formatDateOnly(objeto.hasta),
             'Cupof':objeto.cupof,
-            'N° Escuela que Toma':objeto.nro_escuela_toma, 
+            'N° Escuela que Toma':objeto.nombre_establecimiento, 
             'Region':objeto.region,
             'Departamento':objeto.departamento,
             'Localidad':objeto.localidad,

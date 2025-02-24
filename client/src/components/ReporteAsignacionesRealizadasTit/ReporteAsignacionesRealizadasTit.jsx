@@ -12,7 +12,21 @@ const ReporteAsignacionesRealizadasTit = ({listado})=>{
         const seconds = String(date.getSeconds()).padStart(2, '0');
       
         return `${day}/${month}/${year} - ${hours}:${minutes}:${seconds}`;
-      }
+      };
+
+    function formatDateOnly(dateString) {
+        const date = new Date(dateString);
+        
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Los meses empiezan desde 0
+        const year = date.getFullYear();
+      
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+      
+        return `${day}/${month}/${year}`;
+      };
  
     return(
         <div>
@@ -28,6 +42,9 @@ const ReporteAsignacionesRealizadasTit = ({listado})=>{
                         <th className="border-x-[1px] border-gray-500">Cargo que Toma</th>
                         <th className="border-x-[1px] border-gray-500">Turno que Toma</th>
                         <th className="border-x-[1px] border-gray-500">Modalidad</th>
+                        <th className="border-x-[1px] border-gray-500">Caracter</th>
+                        <th className="border-x-[1px] border-gray-500">Desde</th>
+                        <th className="border-x-[1px] border-gray-500">Hasta</th>
                         <th className="border-x-[1px] border-gray-500">Cupof</th>
                         <th className="border-x-[1px] border-gray-500">N° Escuela que Toma</th>
                         <th className="border-x-[1px] border-gray-500">Region</th>
@@ -41,6 +58,8 @@ const ReporteAsignacionesRealizadasTit = ({listado})=>{
                     {
                         listado?.map((item,index)=>{
                             const formattedDateTime = formatDateTime(item.datetime_asignacion);
+                            const formatDesde = formatDateOnly(item.desde);
+                            const formatHasta = formatDateOnly(item.hasta);
                             //console.log(formattedDateTime); // Salida: "12/09/2024 - 11:03:42"
                             return(
                             <tr key={index} className="border-[1px] border-gray-500 bg-white text-sm text-center break-inside-avoid">
@@ -51,8 +70,11 @@ const ReporteAsignacionesRealizadasTit = ({listado})=>{
                                 <td className="border-x-[1px] border-gray-500">{item.cargo_toma}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.turno}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.modalidad}</td>
+                                <td className="border-x-[1px] border-gray-500">{item.caracter}</td>
+                                <td className="border-x-[1px] border-gray-500">{formatDesde}</td>
+                                <td className="border-x-[1px] border-gray-500">{formatHasta}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.cupof}</td>
-                                <td className="border-x-[1px] border-gray-500">{item.nro_escuela_toma} {item.nombre_establecimiento}</td>
+                                <td className="border-x-[1px] border-gray-500">{item.nombre_establecimiento}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.region}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.departamento}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.localidad}</td>
