@@ -161,13 +161,13 @@ const VacantesTitDocentes = () => {
         }else{
             filtroEspecialidad=filtroEspecialidadVac
         }
-        console.log('que ingresa por id_listado: ', id_listado);
-        console.log('que ingresa por page: ', page);
-        console.log('que ingresa por filtroAsignacion: ', filtroAsignacion);
-        console.log('que ingresa por filtroEspecialidad: ', filtroEspecialidad);
-        console.log('que ingresa por valorBusqueda: ', valorBusqueda);
-        console.log('que ingresa por filtroModalidad: ', filtroModalidad);
-        console.log('que ingresa por filtroRegion: ', filtroRegion);
+        //console.log('que ingresa por id_listado: ', id_listado);
+        //console.log('que ingresa por page: ', page);
+        //console.log('que ingresa por filtroAsignacion: ', filtroAsignacion);
+        //console.log('que ingresa por filtroEspecialidad: ', filtroEspecialidad);
+        //console.log('que ingresa por valorBusqueda: ', valorBusqueda);
+        //console.log('que ingresa por filtroModalidad: ', filtroModalidad);
+        //console.log('que ingresa por filtroRegion: ', filtroRegion);
         let data;
         const limit=10;
         //console.log('que trae id_listado getVacantesDisponiblesMov: ', id_listado);
@@ -270,6 +270,8 @@ const VacantesTitDocentes = () => {
             nombre_establecimiento:datosVacanteSelect.nombre_establecimiento, 
             cargo:datosVacanteSelect.cargo, 
             modalidad:datosVacanteSelect.modalidad, 
+            caracter:datosVacanteSelect.caracter, 
+            hasta:datosVacanteSelect.hasta, 
             turno:datosVacanteSelect.turno, 
             cupof:datosVacanteSelect.cupof,
             localidad:datosVacanteSelect.localidad, 
@@ -582,7 +584,7 @@ const VacantesTitDocentes = () => {
                     <label className="desktop:flex movil:hidden ml-4 text-base font-semibold">NIVEL {configSG.nivel.descripcion}</label>
                     <div className="flex flex-col">
                         <div className="flex flex-row desktop:mb-2">
-                            <label className="desktop:ml-4 text-lg font-sans font-semibold">LISTADO DE VACANTES TITULARIZACION</label>
+                            <label className="desktop:ml-4 text-lg font-sans font-semibold">LISTADO DE VACANTES</label>
                             {/*(userSG.permiso!=3) &&
                                 <button 
                                     className="ml-4 px-[2px] border-[1px] border-[#73685F] rounded hover:bg-[#7C8EA6] hover:text-white hover:border-[#7C8EA6] shadow"
@@ -731,7 +733,9 @@ const VacantesTitDocentes = () => {
                                     <th className="w-[1vw] border-r-[1px] border-zinc-300">Orden</th>
                                     <th className="w-[20vw] border-r-[1px] border-zinc-300">Establecimiento</th>
                                     {/*<th className="w-[5vw] border-r-[1px] border-zinc-300">Mapa</th>*/}
-                                    <th className="w-[20vw] border-r-[1px] border-zinc-300">Cargo</th>
+                                    <th className="w-[5vw] border-r-[1px] border-zinc-300">Cargo</th>
+                                    <th className="w-[10vw] border-r-[1px] border-zinc-300">Caracter</th>
+                                    <th className="w-[10vw] border-r-[1px] border-zinc-300">Hasta</th>
                                     <th className="w-[5vw] border-r-[1px] border-zinc-300">Modalidad</th>
                                     <th className="w-[6vw] border-r-[1px] border-zinc-300">Turno</th>
                                     <th className="w-[5vw] border-r-[1px] border-zinc-300">Region</th>
@@ -759,7 +763,12 @@ const VacantesTitDocentes = () => {
                                                     <span>{vacante.nombre_establecimiento}</span>
                                                 </td>
                                                 {/*<td className="w-[5vw] text-center text-purple-700"></td>*/}
-                                                <td className="w-[20vw] text-center text-purple-700">{vacante.cargo}</td>
+                                                <td className="w-[5vw] text-center text-purple-700">{vacante.cargo}</td>
+                                                <td className="w-[10vw] text-center text-red-500">{vacante.caracter}</td>
+                                                <td className="w-[10vw] text-center text-red-500">{vacante.hasta ? (() => {
+                                const fecha = new Date(vacante.hasta).toLocaleDateString('es-ES');
+                                return fecha === '1/1/2000' ? '' : fecha;
+                            })() : ''}</td>
                                                 <td className="w-[5vw] text-center">{vacante.modalidad}</td>
                                                 <td className="w-[6w] text-center">{vacante.turno}</td>
                                                 <td className="w-[5vw] text-center w-[10vw]">{vacante.region}</td>

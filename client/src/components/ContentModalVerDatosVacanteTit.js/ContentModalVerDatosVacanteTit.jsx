@@ -1,5 +1,6 @@
 const ContentModalVerDatosVacanteTit = ({idVacante,formVacante,closeModal,handleChangeFormVacante,estadoForm,datosVacante,submitGuardarFormVacante,inscriptoAsignado, userSG}) =>{
     //console.log('ingreso a ContentModalVerDatosVacanteTit');
+    //console.log('que tiene datosVacante: ', datosVacante);
 
     return(
         <div className="notranslate h-100 w-100  flex flex-col items-center">
@@ -85,6 +86,34 @@ const ContentModalVerDatosVacanteTit = ({idVacante,formVacante,closeModal,handle
                                 className="border-[1px] border-zinc-400 w-[60mm] pl-[2px] text-start pl-2 bg-neutral-50"
                                 value={formVacante?.modalidad}
                                 onChange={handleChangeFormVacante}
+                                //disabled={true}
+                                //disabled={(datosVacante?.datetime_asignacion!=null)}
+                                disabled={userSG.permiso==3 || userSG.permiso==4} //si el nivel es invitado =3 o =4 se deshabilita el input para modificar
+                            />
+                        </div>
+                        <div className="flex flex-row my-[2px] mx-2 items-center">
+                            <label className="text-sm mr-2">Caracter:</label>
+                            <input 
+                                name="modalidad"
+                                className="border-[1px] border-zinc-400 w-[60mm] pl-[2px] text-start pl-2 bg-neutral-50"
+                                value={formVacante?.caracter}
+                                //onChange={handleChangeFormVacante}
+                                //disabled={true}
+                                //disabled={(datosVacante?.datetime_asignacion!=null)}
+                                disabled={userSG.permiso==3 || userSG.permiso==4} //si el nivel es invitado =3 o =4 se deshabilita el input para modificar
+                            />
+                        </div>
+                        <div className="flex flex-row my-[2px] mx-2 items-center">
+                            <label className="text-sm mr-2">Hasta:</label>
+                            <input 
+                                name="modalidad"
+                                className="border-[1px] border-zinc-400 w-[60mm] pl-[2px] text-start pl-2 bg-neutral-50"
+                                //value={datosVacante.hasta ? new Date(datosVacante.hasta).toLocaleDateString('es-ES') : ''}
+                                value={formVacante?.hasta ? (() => {
+                                    const fecha = new Date(formVacante?.hasta).toLocaleDateString('es-ES');
+                                    return fecha === '1/1/2000' ? '' : fecha;
+                                })() : ''}
+                                //onChange={handleChangeFormVacante}
                                 //disabled={true}
                                 //disabled={(datosVacante?.datetime_asignacion!=null)}
                                 disabled={userSG.permiso==3 || userSG.permiso==4} //si el nivel es invitado =3 o =4 se deshabilita el input para modificar
