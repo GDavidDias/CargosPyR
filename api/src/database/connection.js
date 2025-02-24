@@ -19,6 +19,6 @@ const dbSettingsRemoto = {
     timezone: 'Z'
 }; 
 
-const pool = mysql.createPool(dbSettingsRemoto);
+const pool = mysql.createPool(dbSettingsLocal);
 
 module.exports = pool;

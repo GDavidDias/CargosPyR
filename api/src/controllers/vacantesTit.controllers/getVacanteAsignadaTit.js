@@ -8,7 +8,7 @@ module.exports = async(req,res)=>{
     try{
         //TRAE LOS DATOS DE UNA VACANTE ASIGNADA
 
-        const [result] = await pool.query(`SELECT vt.id_vacante_tit, vt.id_listado_vac_tit, vt.orden, vt.nro_establecimiento, vt.nombre_establecimiento, vt.region, vt.departamento, vt.localidad, vt.cargo, vt.turno, vt.modalidad, vt.cupof, vt.zona, vt.id_especialidad, e.descripcion AS especialidad, vt.resolucion, at.datetime_asignacion , at.id_asignacion_tit
+        const [result] = await pool.query(`SELECT vt.id_vacante_tit, vt.id_listado_vac_tit, vt.orden, vt.nro_establecimiento, vt.nombre_establecimiento, vt.region, vt.departamento, vt.localidad, vt.cargo, vt.turno, vt.modalidad, vt.cupof, vt.zona, vt.id_especialidad, e.descripcion AS especialidad, vt.resolucion, at.datetime_asignacion , at.id_asignacion_tit, vt.caracter, vt.motivo_cobertura, vt.desde, vt.hasta
             FROM vacantes_tit AS vt
             LEFT JOIN asignacion_tit AS at ON vt.id_vacante_tit = at.id_vacante_tit
             LEFT JOIN especialidad as e ON vt.id_especialidad = e.id_especialidad

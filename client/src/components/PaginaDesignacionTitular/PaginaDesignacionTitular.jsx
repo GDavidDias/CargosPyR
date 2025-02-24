@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 
 const PaginaDesignacionTitular = ({datosInscripto, datosVacante,id_nivel}) =>{
 //console.log('que tiene id_nivel en PaginaDesignacion: ', id_nivel);
+    //console.log('que ingresa por datosInscripto: ', datosInscripto);
+    //console.log('que ingresa por datosVacante: ', datosVacante);
 
     const fechaActual = new Date();
     const dia = fechaActual.getDate();
