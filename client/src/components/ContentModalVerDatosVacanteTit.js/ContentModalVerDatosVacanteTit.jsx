@@ -1,6 +1,7 @@
 const ContentModalVerDatosVacanteTit = ({idVacante,formVacante,closeModal,handleChangeFormVacante,estadoForm,datosVacante,submitGuardarFormVacante,inscriptoAsignado, userSG}) =>{
+
     //console.log('ingreso a ContentModalVerDatosVacanteTit');
-    //console.log('que tiene datosVacante: ', datosVacante);
+    console.log('que tiene datosVacante: ', datosVacante);
 
     return(
         <div className="notranslate h-100 w-100  flex flex-col items-center">
@@ -12,7 +13,6 @@ const ContentModalVerDatosVacanteTit = ({idVacante,formVacante,closeModal,handle
                 ${(inscriptoAsignado.id_inscripto_tit)
                     ?`text-red-500 font-bold`
                     :`text-green-500 font-bold`
-
                 }
             `}>{
                 (inscriptoAsignado.id_inscripto_tit)    
@@ -64,7 +64,6 @@ const ContentModalVerDatosVacanteTit = ({idVacante,formVacante,closeModal,handle
                             />
                         </div>
 
-
                     </div>
                     <div className="flex flex-col ml-2  items-end justify-end">
                         <div className="flex flex-row my-[2px] mx-2 items-center">
@@ -96,7 +95,7 @@ const ContentModalVerDatosVacanteTit = ({idVacante,formVacante,closeModal,handle
                             <input 
                                 name="modalidad"
                                 className="border-[1px] border-zinc-400 w-[60mm] pl-[2px] text-start pl-2 bg-neutral-50"
-                                value={formVacante?.caracter}
+                                value={datosVacante.caracter}
                                 //onChange={handleChangeFormVacante}
                                 //disabled={true}
                                 //disabled={(datosVacante?.datetime_asignacion!=null)}
@@ -105,14 +104,15 @@ const ContentModalVerDatosVacanteTit = ({idVacante,formVacante,closeModal,handle
                         </div>
                         <div className="flex flex-row my-[2px] mx-2 items-center">
                             <label className="text-sm mr-2">Hasta:</label>
-                            <input 
+                            <textarea 
                                 name="modalidad"
-                                className="border-[1px] border-zinc-400 w-[60mm] pl-[2px] text-start pl-2 bg-neutral-50"
+                                className="border-[1px] border-zinc-400 w-[60mm] h-[12mm] pl-[2px] text-start pl-2 bg-neutral-50 text-sm "
+                                value={datosVacante.hasta_observacion}
                                 //value={datosVacante.hasta ? new Date(datosVacante.hasta).toLocaleDateString('es-ES') : ''}
-                                value={formVacante?.hasta ? (() => {
-                                    const fecha = new Date(formVacante?.hasta).toLocaleDateString('es-ES');
-                                    return fecha === '1/1/2000' ? '' : fecha;
-                                })() : ''}
+                                //value={formVacante?.hasta ? (() => {
+                                //    const fecha = new Date(formVacante?.hasta).toLocaleDateString('es-ES');
+                                //    return fecha === '1/1/2000' ? '' : fecha;
+                                //})() : ''}
                                 //onChange={handleChangeFormVacante}
                                 //disabled={true}
                                 //disabled={(datosVacante?.datetime_asignacion!=null)}
@@ -143,7 +143,6 @@ const ContentModalVerDatosVacanteTit = ({idVacante,formVacante,closeModal,handle
                                 disabled={userSG.permiso==3 || userSG.permiso==4} //si el nivel es invitado =3 o =4 se deshabilita el input para modificar
                             />
                         </div>
-
                     </div>
 
                     <div className="flex flex-col ml-2 items-end justify-end">
@@ -239,8 +238,6 @@ const ContentModalVerDatosVacanteTit = ({idVacante,formVacante,closeModal,handle
                             />
                         </div>
                     </div>
-                    
-
                 </div>
                 }                
 
@@ -268,7 +265,6 @@ const ContentModalVerDatosVacanteTit = ({idVacante,formVacante,closeModal,handle
                         </div>
                     }
                 </div>
-
             </div>
         </div>
     )

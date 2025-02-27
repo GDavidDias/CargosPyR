@@ -145,7 +145,7 @@ const VacantesTit = () => {
         //console.log('que trae id_listado getVacantesDisponiblesMov: ', id_listado);
         if(id_listado){
             data = await fetchAllVacantesTit(id_listado,limit,page, filtroAsignacion, filtroEspecialidad, valorBusqueda,"", filtroRegion);
-            //console.log('que trae data de fetchAllVacantesTit: ', data);
+            console.log('que trae data de fetchAllVacantesTit: ', data);
 
             if(data.result?.length!=0){
                 setListadoVacantesTit(data.result); 
@@ -199,7 +199,7 @@ const VacantesTit = () => {
     const submitVerDatosVacante = async(datosVacante) => {
         setDatosInscriptoAsignado({});
         //console.log('presiono en submitVerDatosVacante');
-        //console.log('que tiene datos de vacante: ', datosVacante)
+        console.log('que tiene datos de vacante: ', datosVacante)
         await setDatosVacanteSelect(datosVacante);
         //busco datos de inscripto asignado si datetime_asignacion no es null
         if(datosVacante.datetime_asignacion!=null){
@@ -655,7 +655,7 @@ const VacantesTit = () => {
                                     <th className="border-r-[1px] border-zinc-300">Localidad</th>
                                     <th className="border-r-[1px] border-zinc-300">Zona</th>
                                     <th className="border-r-[1px] border-zinc-300">Caracter</th>
-                                    <th className="border-r-[1px] border-zinc-300">Hasta</th>
+                                    <th className="w-[10vw] border-r-[1px] border-zinc-300">Hasta</th>
                                     <th className="">Acciones</th>
                                 </tr>
                             </thead>
@@ -691,7 +691,8 @@ const VacantesTit = () => {
                                                 <td className="text-center">{vacante.localidad}</td>
                                                 <td className="text-center">{vacante.zona}</td>
                                                 <td className="text-center text-base font-light">{vacante.caracter}</td>
-                                                <td className="text-center">{vacante.hasta ?new Date(vacante.hasta).toLocaleDateString('es-ES') :""}</td>
+                                                {/*<td className="text-center">{vacante.hasta ?new Date(vacante.hasta).toLocaleDateString('es-ES') :""}</td>*/}
+                                                <td className="w-[10vw] text-center text-xs font-light wrap">{vacante.hasta_observacion}</td>
                                                 <td>
                                                     <div className="flex flex-row items-center justify-center  ">
                                                         <FaEye 

@@ -16,7 +16,7 @@ module.exports = async(req,res)=>{
     const offset = (page-1)*limit;
 
 
-    let armaquery=`SELECT it.id_inscriptos_tit, it.dni, it.apellido, it.nombre, it.total, it.orden, it.id_especialidad, e.descripcion AS especialidad, e.abreviatura AS abreviatura_especialidad, it.id_listado_inscriptos, li.descripcion, at2.id_vacante_tit AS vacante_asignada, it.id_estado_inscripto, ei.descripcion AS descripcion_estado_inscripto, it.observaciones
+    let armaquery=`SELECT it.id_inscriptos_tit, it.dni, it.apellido, it.nombre, it.total, it.orden, it.id_especialidad, e.descripcion AS especialidad, e.abreviatura AS abreviatura_especialidad, it.id_listado_inscriptos, li.descripcion, at2.id_vacante_tit AS vacante_asignada, it.id_estado_inscripto, ei.descripcion AS descripcion_estado_inscripto, it.observaciones, it.titularizo, it.visibletitular
             FROM inscriptos_tit AS it
             LEFT JOIN especialidad AS e ON it.id_especialidad = e.id_especialidad 
             LEFT JOIN listado_inscriptos AS li ON it.id_listado_inscriptos = li.id_listado_inscriptos
@@ -24,6 +24,7 @@ module.exports = async(req,res)=>{
             LEFT JOIN (SELECT at.id_inscripto_tit, at.id_vacante_tit FROM asignacion_tit AS at WHERE at.obs_desactiva IS NULL) AS at2 ON it.id_inscriptos_tit = at2.id_inscripto_tit
 
             WHERE it.id_listado_inscriptos = ${id_listado_inscriptos}
+            AND (it.visibletitular="" OR it.visibletitular is null)
                         
             `;
 

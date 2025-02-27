@@ -22,7 +22,7 @@ const ContentModalAsignacionTit = ({closeModalAsign,datosInscriptoSelect,datosVa
                         </div>
                     </div>
                 </div>
-                
+
                 {/* AVISO ESPECIALIDAD DIFIERE DE LA SOLICITADA */}
                 {/* PARA TRASLADO */}
                 {(datosInscriptoSelect.id_especialidad!=datosVacanteSelect.id_especialidad)
@@ -41,7 +41,7 @@ const ContentModalAsignacionTit = ({closeModalAsign,datosInscriptoSelect,datosVa
 
                 {/* DATOS DEL CARGOS */}
                 <div className="flex flex-row w-[50vw] justify-center">
-            
+
                     {/* CARGO A TOMAR */}
                     <div className="flex flex-col border-[5px] border-emerald-500 w-[85%] items-center  ml-[9px] rounded-md shadow-lg bg-emerald-100">
                         <div className="flex items-center ">
@@ -87,11 +87,13 @@ const ContentModalAsignacionTit = ({closeModalAsign,datosInscriptoSelect,datosVa
                             </div>
                             <div className="flex flex-row my-[2px]">
                                 <label className="font-semibold  mr-2">Hasta</label>
-                                <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[4vh] pl-[4px] bg-neutral-50">{datosVacanteSelect.hasta ? (() => {
+                                <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[6vh] pl-[4px] bg-neutral-50 text-sm">{datosVacanteSelect.hasta_observacion}
+                                </div>
+                                {/*<div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[4vh] pl-[4px] bg-neutral-50">{datosVacanteSelect.hasta ? (() => {
                                     const fecha = new Date(datosVacanteSelect.hasta).toLocaleDateString('es-ES');
                                         return fecha === '1/1/2000' ? '' : fecha;
                                         })() : ''}
-                                </div>
+                                </div>*/}
                             </div>
                         </div>
                     </div>

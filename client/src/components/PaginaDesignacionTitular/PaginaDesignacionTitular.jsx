@@ -102,25 +102,27 @@ const PaginaDesignacionTitular = ({datosInscripto, datosVacante,id_nivel}) =>{
                     </div>
                     <div className='flex flex-row mt-[2px]'>
                         <p>INSTITUCION DE DESTINO:</p>
-                        <p className='border-b-[1px] border-black w-[400px] text-center'>{datosVacante.nro_establecimiento} {datosVacante.nombre_establecimiento}</p>
+                        <p className='border-b-[1px] border-black w-[400px] text-center'>{datosVacante.nombre_establecimiento}</p>
                     </div>
                     <div className='flex flex-row mt-[2px]'>
                         <p>CARGO DE DESTINO:</p>
                         <p className='border-b-[1px] border-black w-[200px] text-center'>{datosVacante.cargo}</p>
-                    </div>
-                    <div className='flex flex-row mt-[2px]'>
                         <p>TURNO:</p>
                         <p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.turno}</p>
-                        <p>CUPOF:</p>
-                        <p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.cupof}</p>
+                        {/*<p>CUPOF:</p>
+                        <p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.cupof}</p>*/}
+                    </div>
+                    <div className='flex flex-row mt-[2px]'>
                         <p>DESDE:</p>
-                        <p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.desde ? new Date(datosVacante.desde).toLocaleDateString('es-ES') : ''}</p>
+                        {/*<p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.desde ? new Date(datosVacante.desde).toLocaleDateString('es-ES') : ''}</p>*/}
+                        <p className='border-b-[1px] border-black w-[200px] text-center text-sm'>{datosVacante.desde_observacion}</p>
                         <p>HASTA:</p>
-                        <p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.hasta ? (() => {
+                        {/*<p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.hasta ? (() => {
                                 const fecha = new Date(datosVacante.hasta).toLocaleDateString('es-ES');
                                 return fecha === '1/1/2000' ? '' : fecha;
                             })() : ''}
-                        </p>
+                        </p>*/}
+                        <p className='border-b-[1px] border-black w-[350px] text-center text-sm '>{datosVacante.hasta_observacion}</p>
 
                     </div>
                 </div>

@@ -217,11 +217,12 @@ const ContentModalVacantesDispTit = ({datosInscriptoSelect,submitCloseModalVac,l
                                             <td className="w-[10vw] pl-[4px] text-center">{vacante.departamento}</td>
                                             <td className="w-[10vw] pl-[4px] text-center">{vacante.localidad}</td>
                                             <td className="w-[8vw] pl-[4px] text-center">{vacante.modalidad}</td>
-                                            <td className="w-[8vw] pl-[4px] text-center text-red-500">{vacante.hasta ? (() => {
+                                            {/*<td className="w-[8vw] pl-[4px] text-center text-red-500">{vacante.hasta ? (() => {
                                                 const fecha = new Date(vacante.hasta).toLocaleDateString('es-ES');
                                                     return fecha === '1/1/2000' ? '' : fecha;
                                                     })() : ''}
-                                        </td>
+                                            </td>*/}
+                                            <td className="w-[8vw] pl-[4px] text-center text-xs">{vacante.hasta_observacion}</td>
                                             
                                             <td className="w-[8vw]">
                                                 <div className="flex flex-row items-center justify-center">

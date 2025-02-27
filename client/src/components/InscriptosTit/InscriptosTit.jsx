@@ -152,7 +152,7 @@ const InscriptosTit = () =>{
         if(id_listado){
             //paso id_listado, limit y page
             data = await fetchAllInscriptosTit(id_listado, limit, page,filtroAsignacion, valorBusqueda,filtroEspecialidad);
-            //console.log('que trae data de fetchAllInscriptosTit: ', data);
+            console.log('que trae data de fetchAllInscriptosTit: ', data);
 
             if(data.result?.length!=0){
                 setListadoInscriptosTit(data.result); 

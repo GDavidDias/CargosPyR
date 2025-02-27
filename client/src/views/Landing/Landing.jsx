@@ -275,8 +275,8 @@ const Landing = () => {
                     <div>
                         <button
                             className="w-[50mm] h-8 bg-[#758C51] my-2 px-2 py-1 text-base font-medium text-white hover:bg-[#c9d991] shadow-md rounded mx-2 desktop-xl:w-[15vw] desktop-xl:h-10 desktop-xl:text-xl"
-                            //onClick={submitNivelPrimario}
-                            onClick={submitNivelInicial}
+                            onClick={submitNivelPrimario}
+                            //onClick={submitNivelInicial}
                             translate='no'
                             id="botonEnter"
                         >Ingreso DOCENTES</button>
