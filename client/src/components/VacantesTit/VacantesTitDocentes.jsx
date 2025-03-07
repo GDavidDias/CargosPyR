@@ -765,7 +765,8 @@ const VacantesTitDocentes = () => {
                                                 {/*<td className="w-[5vw] text-center text-purple-700"></td>*/}
                                                 <td className="w-[5vw] text-center text-purple-700">{vacante.cargo}</td>
                                                 <td className="w-[10vw] text-center text-red-500">{vacante.caracter}</td>
-                                                <td className="w-[10vw] text-center text-red-500 text-sm font-stretch-extra-condensed ">{vacante.hasta_observacion}</td>
+                                                {/*<td className="w-[10vw] text-center text-red-500 text-sm font-stretch-extra-condensed ">{vacante.hasta_observacion}</td>*/}
+                                                <td className="w-[10vw] text-center text-red-500 text-sm font-stretch-extra-condensed ">{vacante.hasta ?vacante.hasta.replace(/\d{2}:\d{2}:\d{2}$/, "").trim() :""}</td>
                                                 <td className="w-[5vw] text-center">{vacante.modalidad}</td>
                                                 <td className="w-[6w] text-center">{vacante.turno}</td>
                                                 <td className="w-[5vw] text-center w-[10vw]">{vacante.region}</td>

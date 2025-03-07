@@ -30,7 +30,7 @@ const PaginaDesignacionTitular = ({datosInscripto, datosVacante,id_nivel}) =>{
     //     return datamov;
     // };
 
-    
+
     return(
         <div className='notranslate border-2 border-zinc-300 p-4'>
             {/* ENCABEZADO */}
@@ -70,7 +70,7 @@ const PaginaDesignacionTitular = ({datosInscripto, datosVacante,id_nivel}) =>{
                     <div className='flex flex-row'>
                         <p>Orden: </p>
                         <p className='border-b-[1px] border-black w-[100px] text-center'>{datosInscripto.orden}</p>
-                        <p className='ml-8'>PUNTAJE:</p> 
+                        <p className='ml-8'>PUNTAJE:</p>
                         <p className='border-b-[1px] border-black w-[100px] text-center'>{datosInscripto.total}</p>
                         <p className='ml-8'>DNI N°:</p>
                         <p className='border-b-[1px] border-black w-[100px] text-center mr-4'>{datosInscripto.dni}</p>
@@ -96,7 +96,9 @@ const PaginaDesignacionTitular = ({datosInscripto, datosVacante,id_nivel}) =>{
                         <p>NUMERO DE CARGO: </p>
                         <p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.orden}</p>
                         <p>MOVIMIENTO:</p>
-                        <p className='border-b-[1px] border-black w-[200px] text-center'>{datosVacante.caracter}</p>
+                        <p className='border-b-[1px] border-black w-[130px] text-center'>{datosVacante.caracter}</p>
+                        <p>CUPOF:</p>
+                        <p className='border-b-[1px] border-black w-[50px] text-center'>{datosVacante.cupof}</p>
                     </div>
                     <div className='flex flex-row mt-[2px]'>
                     </div>
@@ -105,24 +107,26 @@ const PaginaDesignacionTitular = ({datosInscripto, datosVacante,id_nivel}) =>{
                         <p className='border-b-[1px] border-black w-[400px] text-center'>{datosVacante.nombre_establecimiento}</p>
                     </div>
                     <div className='flex flex-row mt-[2px]'>
-                        <p>CARGO DE DESTINO:</p>
+                        <p>CARGO:</p>
                         <p className='border-b-[1px] border-black w-[200px] text-center'>{datosVacante.cargo}</p>
                         <p>TURNO:</p>
                         <p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.turno}</p>
-                        {/*<p>CUPOF:</p>
-                        <p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.cupof}</p>*/}
+                        <p>MODALIDAD:</p>
+                        <p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.modalidad}</p>
                     </div>
                     <div className='flex flex-row mt-[2px]'>
                         <p>DESDE:</p>
                         {/*<p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.desde ? new Date(datosVacante.desde).toLocaleDateString('es-ES') : ''}</p>*/}
-                        <p className='border-b-[1px] border-black w-[200px] text-center text-sm'>{datosVacante.desde_observacion}</p>
+                        {/*<p className='border-b-[1px] border-black w-[200px] text-center text-sm'>{datosVacante.desde_observacion}</p>*/}
+                        <p className='border-b-[1px] border-black w-[200px] text-center text-sm'>{datosVacante.desde ?datosVacante.desde.replace(/\d{2}:\d{2}:\d{2}$/, "").trim() :""}</p>
                         <p>HASTA:</p>
                         {/*<p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.hasta ? (() => {
                                 const fecha = new Date(datosVacante.hasta).toLocaleDateString('es-ES');
                                 return fecha === '1/1/2000' ? '' : fecha;
                             })() : ''}
                         </p>*/}
-                        <p className='border-b-[1px] border-black w-[350px] text-center text-sm '>{datosVacante.hasta_observacion}</p>
+                        {/*<p className='border-b-[1px] border-black w-[350px] text-center text-sm '>{datosVacante.hasta_observacion}</p>*/}
+                        <p className='border-b-[1px] border-black w-[350px] text-center text-sm '>{datosVacante.hasta ?datosVacante.hasta.replace(/\d{2}:\d{2}:\d{2}$/, "").trim() :""}</p>
 
                     </div>
                 </div>

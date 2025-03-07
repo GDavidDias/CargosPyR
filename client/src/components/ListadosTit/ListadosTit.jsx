@@ -82,6 +82,7 @@ const ListadosTit = () => {
         }
     };
 
+
     const submitEstadoInscriptos=async()=>{
         console.log('presiono sobre estado inscriptos');
         //traigo datos de estado inscriptos y guardo en store local
@@ -190,7 +191,9 @@ const ListadosTit = () => {
         return `${day}/${month}/${year}`;
       };
 
+      
     function formateaListadoAsignacionesRealizadas (datos){
+        console.log('que tiene datos en formateaListadoAsignacionesRealizadas: ', datos);
         const datosformat = datos.map(objeto=>({
             'Dni':objeto.dni, 
             'Total':objeto.total, 
@@ -200,8 +203,10 @@ const ListadosTit = () => {
             'Turno':objeto.turno,
             'Modalidad':objeto.modalidad,
             'Caracter':objeto.caracter,
-            'Desde':formatDateOnly(objeto.desde),
-            'Hasta':formatDateOnly(objeto.hasta),
+            //'Desde':formatDateOnly(objeto.desde_observacion),
+            //'Hasta':formatDateOnly(objeto.hasta_observacion),
+            'Desde':objeto.desde_observacion,
+            'Hasta':objeto.hasta_observacion,
             'Cupof':objeto.cupof,
             'N° Escuela que Toma':objeto.nombre_establecimiento, 
             'Region':objeto.region,

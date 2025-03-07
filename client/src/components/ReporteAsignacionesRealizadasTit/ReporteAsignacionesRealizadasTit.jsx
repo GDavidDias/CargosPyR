@@ -1,16 +1,16 @@
 const ReporteAsignacionesRealizadasTit = ({listado})=>{
-    console.log('que tieen listado: ', listado);
+    console.log('que tiene listado: ', listado);
     function formatDateTime(dateString) {
         const date = new Date(dateString);
-        
+
         const day = String(date.getDate()).padStart(2, '0');
         const month = String(date.getMonth() + 1).padStart(2, '0'); // Los meses empiezan desde 0
         const year = date.getFullYear();
-      
+
         const hours = String(date.getHours()).padStart(2, '0');
         const minutes = String(date.getMinutes()).padStart(2, '0');
         const seconds = String(date.getSeconds()).padStart(2, '0');
-      
+
         return `${day}/${month}/${year} - ${hours}:${minutes}:${seconds}`;
       };
 
@@ -27,7 +27,7 @@ const ReporteAsignacionesRealizadasTit = ({listado})=>{
       
         return `${day}/${month}/${year}`;
       };
- 
+
     return(
         <div>
             <table className="border-[1px] bg-slate-50 w-full page-break-after border">
@@ -71,8 +71,10 @@ const ReporteAsignacionesRealizadasTit = ({listado})=>{
                                 <td className="border-x-[1px] border-gray-500">{item.turno}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.modalidad}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.caracter}</td>
-                                <td className="border-x-[1px] border-gray-500">{formatDesde}</td>
-                                <td className="border-x-[1px] border-gray-500">{formatHasta}</td>
+                                {/*<td className="border-x-[1px] border-gray-500">{formatDesde}</td>*/}
+                                {/*<td className="border-x-[1px] border-gray-500">{formatHasta}</td>*/}
+                                <td className="border-x-[1px] border-gray-500">{item.desde_observacion}</td>
+                                <td className="border-x-[1px] border-gray-500">{item.hasta_observacion}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.cupof}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.nombre_establecimiento}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.region}</td>

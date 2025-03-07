@@ -107,7 +107,8 @@ const ContentModalVerDatosVacanteTit = ({idVacante,formVacante,closeModal,handle
                             <textarea 
                                 name="modalidad"
                                 className="border-[1px] border-zinc-400 w-[60mm] h-[12mm] pl-[2px] text-start pl-2 bg-neutral-50 text-sm "
-                                value={datosVacante.hasta_observacion}
+                                //value={datosVacante.hasta_observacion}
+                                value={datosVacante.hasta ?datosVacante.hasta.replace(/\d{2}:\d{2}:\d{2}$/, "").trim() :""}
                                 //value={datosVacante.hasta ? new Date(datosVacante.hasta).toLocaleDateString('es-ES') : ''}
                                 //value={formVacante?.hasta ? (() => {
                                 //    const fecha = new Date(formVacante?.hasta).toLocaleDateString('es-ES');

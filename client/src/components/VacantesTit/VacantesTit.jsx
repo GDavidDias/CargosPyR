@@ -692,7 +692,8 @@ const VacantesTit = () => {
                                                 <td className="text-center">{vacante.zona}</td>
                                                 <td className="text-center text-base font-light">{vacante.caracter}</td>
                                                 {/*<td className="text-center">{vacante.hasta ?new Date(vacante.hasta).toLocaleDateString('es-ES') :""}</td>*/}
-                                                <td className="w-[10vw] text-center text-xs font-light wrap">{vacante.hasta_observacion}</td>
+                                                {/*<td className="w-[10vw] text-center text-xs font-light wrap">{vacante.hasta_observacion}</td>*/}
+                                                <td className="w-[10vw] text-center text-xs font-light wrap">{vacante.hasta ?vacante.hasta.replace(/\d{2}:\d{2}:\d{2}$/, "").trim() :""}</td>
                                                 <td>
                                                     <div className="flex flex-row items-center justify-center  ">
                                                         <FaEye 

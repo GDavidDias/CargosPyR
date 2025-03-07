@@ -87,7 +87,7 @@ const ContentModalAsignacionTit = ({closeModalAsign,datosInscriptoSelect,datosVa
                             </div>
                             <div className="flex flex-row my-[2px]">
                                 <label className="font-semibold  mr-2">Hasta</label>
-                                <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[6vh] pl-[4px] bg-neutral-50 text-sm">{datosVacanteSelect.hasta_observacion}
+                                <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[6vh] pl-[4px] bg-neutral-50 text-sm">{datosVacanteSelect.hasta ?datosVacanteSelect.hasta.replace(/\d{2}:\d{2}:\d{2}$/, "").trim() :""}
                                 </div>
                                 {/*<div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[4vh] pl-[4px] bg-neutral-50">{datosVacanteSelect.hasta ? (() => {
                                     const fecha = new Date(datosVacanteSelect.hasta).toLocaleDateString('es-ES');

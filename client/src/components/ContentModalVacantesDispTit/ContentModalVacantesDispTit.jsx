@@ -222,7 +222,8 @@ const ContentModalVacantesDispTit = ({datosInscriptoSelect,submitCloseModalVac,l
                                                     return fecha === '1/1/2000' ? '' : fecha;
                                                     })() : ''}
                                             </td>*/}
-                                            <td className="w-[8vw] pl-[4px] text-center text-xs">{vacante.hasta_observacion}</td>
+                                            {/*<td className="w-[8vw] pl-[4px] text-center text-xs">{vacante.hasta_observacion}</td>*/}
+                                            <td className="w-[8vw] pl-[4px] text-center text-xs">{vacante.hasta ?vacante.hasta.replace(/\d{2}:\d{2}:\d{2}$/, "").trim() :""}</td>
                                             
                                             <td className="w-[8vw]">
                                                 <div className="flex flex-row items-center justify-center">
