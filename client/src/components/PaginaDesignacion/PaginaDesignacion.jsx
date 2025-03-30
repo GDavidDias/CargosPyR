@@ -1,4 +1,7 @@
 import logo from '../../assets/logo_designacion.png';
+import firma from '../../assets/firmas.png';
+
+
 import { useEffect, useState } from 'react';
 
 const PaginaDesignacion = ({datosInscripto, datosVacante,id_nivel}) =>{
@@ -119,7 +122,9 @@ const PaginaDesignacion = ({datosInscripto, datosVacante,id_nivel}) =>{
 
                     </div>
                 </div>
+
             </div>
+
             {/* PIE IMPRESION */}
             <div className='flex flex-row h-[18vh] justify-start items-end '>
                 <p className='text-[0.7rem] font-semibold border-[1px] border-b-gray-500'>Nota: </p>

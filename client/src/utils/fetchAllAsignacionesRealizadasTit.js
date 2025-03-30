@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { URL } from '../../varGlobal';
 
-
 export const fetchAllAsignacionesRealizadasTit = async(id_listado) => {
     const dataBody={
         "idListadoVacTit":id_listado

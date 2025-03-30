@@ -2,7 +2,6 @@ const mysql = require('mysql2/promise');
 require('dotenv').config();
 //console.log(process.env);
 
-
 const dbSettingsLocal = {
     host:'localhost',
     user:process.env.LOCALUSERDB,
@@ -12,7 +11,6 @@ const dbSettingsLocal = {
     timezone: 'Z'  //PARA TRABAJAR EN UTC SIN CONVERSIONES DE ZONA HORARIA
 };
 
-
 const dbSettingsRemoto = {
     host:process.env.REMOTOHOSTDB,
     user:process.env.REMOTOUSERDB,
@@ -21,6 +19,6 @@ const dbSettingsRemoto = {
     timezone: 'Z'
 }; 
 
-const pool = mysql.createPool(dbSettingsRemoto);
+const pool = mysql.createPool(dbSettingsLocal);
 
 module.exports = pool;

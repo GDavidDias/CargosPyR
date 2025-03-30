@@ -242,7 +242,7 @@ const Landing = () => {
                 <div className="h-28  flex flex-col pl-4 justify-center items-center">
                     <label className="desktop:text-[38px] movil:text-xl font-bold text-white" translate='no'>Sistema Entrega de Cargos</label>
                     {/* <label className="desktop:text-[25px] movil:text-lg text-white font-semibold mt-4" translate='no'>Nivel {configSG.nivel?.descripcion}</label> */}
-                    <label className="desktop:text-[25px] movil:text-xl text-white desktop:font-semibold movil:font-light mt-4" translate='no'>Provisionales y Reemplazantes</label>
+                    <label className="desktop:text-[25px] movil:text-xl text-white desktop:font-semibold movil:font-light mt-4" translate='no'>Provisionales y Reemplazantes PROVINCIAL</label>
                 </div>
             </div>
 
@@ -277,8 +277,8 @@ const Landing = () => {
                     <div>
                         <button
                             className="w-[50mm] h-8 bg-[#758C51] my-2 px-2 py-1 text-base font-medium text-white hover:bg-[#c9d991] shadow-md rounded mx-2 desktop-xl:w-[15vw] desktop-xl:h-10 desktop-xl:text-xl"
-                            //onClick={submitNivelPrimario}
-                            onClick={submitNivelInicial}
+                            onClick={submitNivelPrimario}
+                            //onClick={submitNivelInicial}
                             translate='no'
                             id="botonEnter"
                         >Ingreso DOCENTES</button>

@@ -1,4 +1,5 @@
 import logo from '../../assets/logo_designacion.png';
+import firma from '../../assets/firmas.png';
 import { useEffect, useState } from 'react';
 
 const PaginaDesignacionTitular = ({datosInscripto, datosVacante,id_nivel}) =>{
@@ -129,12 +130,18 @@ const PaginaDesignacionTitular = ({datosInscripto, datosVacante,id_nivel}) =>{
                         <p className='border-b-[1px] border-black w-[350px] text-center text-sm '>{datosVacante.hasta ?datosVacante.hasta.replace(/\d{2}:\d{2}:\d{2}$/, "").trim() :""}</p>
 
                     </div>
+                    
+                     <div className="w-[100%] flex ml-20  align-center">
+                         <img src={""} className='w-[80%]'/>
+                     </div>
                 </div>
             </div>
             {/* PIE IMPRESION */}
-            <div className='flex flex-row h-[12vh] justify-center items-end'>
-                {/* <p className='text-base font-semibold w-[200px] border-t-[1px] border-gray-600 text-center'>Firma y Sello</p> */}
+            
+            <div className='flex flex-row h-[12vh] justify-center items-end '>
+                {/*<p className='text-base font-semibold w-[200px] border-t-[1px] border-gray-600 text-center'>Firma y Sello</p>*/}
             </div>
+            
         </div>
     )
 };

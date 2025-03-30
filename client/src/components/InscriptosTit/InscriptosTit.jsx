@@ -343,8 +343,15 @@ const InscriptosTit = () =>{
     };
 
     const submitVerVacantes = (datosInscripto) =>{
-        //console.log('que tien datosInscriptos: ', datosInscripto);
+        console.log('que tiene datosInscriptos: ', datosInscripto);
         //setCurrentPageVac(1);
+        if(!(datosInscripto.tomo_cargo===null || datosInscripto.tomo_cargo==='')){
+            console.log('YA TOMO CARGO');
+            setMensajeModalInfo(`AVISO: El Docente ya Tomo Cargo en Instancia General (${datosInscripto.tomo_cargo})`);
+            openModal();
+        }else{
+            console.log('NO TOMO CARGO');
+        }
         setDatosInscriptoSelect(datosInscripto);
         //cargo listado de vacantes disponibles
         getVacantesDisponiblesTit(idListadoVacantesTit, currentPageVac,'disponibles',filtroEspecialidadVac,inputSearchVac)
@@ -762,8 +769,9 @@ const InscriptosTit = () =>{
                                     {/* <th className="border-r-[1px] border-zinc-300">Apellido</th> */}
                                     <th className="border-r-[1px] border-zinc-300">Nombre Docente</th>
                                     <th className="border-r-[1px] border-zinc-300">DNI</th>
-                                    <th className="border-r-[1px] border-zinc-300">Especialidad</th>
+                                    <th className="border-r-[1px] border-zinc-300">Espec.</th>
                                     <th className="border-r-[1px] border-zinc-300">Obs</th>
+                                    <th className="border-r-[1px] border-zinc-300">Tiene Cargo</th>
                                     <th className="border-r-[1px] border-zinc-300">Estado</th>
                                     <th className="">Acciones</th>
                                 </tr>
@@ -772,7 +780,7 @@ const InscriptosTit = () =>{
                                 {
                                     // filterListadoInscriptosMov?.map((inscripto, index)=>{
                                     listadoInscriptosTit?.map((inscripto, index)=>{
-                                        const colorFila = inscripto.vacante_asignada ?`bg-red-200` :(((inscripto.id_inscriptos_tit % 2)===0) ?`bg-zinc-200` :``)
+                                        const colorFila = inscripto.vacante_asignada ?`bg-red-200` :( inscripto.tomo_cargo!="" ?`bg-blue-300` :((inscripto.id_inscriptos_tit % 2)===0) ?`bg-zinc-200` :``)
                                         return(
                                             <tr 
                                                 className={`text-lg font-medium border-b-[1px] border-zinc-300 h-[5vh] hover:bg-orange-300 ${colorFila}`}
@@ -783,8 +791,10 @@ const InscriptosTit = () =>{
                                                 {/* <td>{inscripto.apellido}</td> */}
                                                 <td>{inscripto.apellido} {inscripto.nombre}</td>
                                                 <td>{inscripto.dni}</td>
-                                                <td className="font-sans font-light">{inscripto.especialidad}</td>
-                                                <td className="text-sm font-sans font-light">{inscripto.observaciones}</td>
+                                                <td className="font-sans font-light text-center">{inscripto.abreviatura_especialidad}</td>
+                                                {/*<td className="text-sm font-sans font-light text-center text-blue-800 ">{inscripto.tomo_cargo}</td>*/}
+                                                <td className="text-sm font-sans font-light text-center text-blue-800 ">{inscripto.observaciones}</td>
+                                                <td>{inscripto.tomo_cargo}</td>
                                                 <td>{inscripto.descripcion_estado_inscripto}</td>
                                                 <td>
                                                     <div className="flex flex-row items-center justify-center  ">

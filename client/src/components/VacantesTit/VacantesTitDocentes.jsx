@@ -167,14 +167,14 @@ const VacantesTitDocentes = () => {
         //console.log('que ingresa por filtroEspecialidad: ', filtroEspecialidad);
         //console.log('que ingresa por valorBusqueda: ', valorBusqueda);
         //console.log('que ingresa por filtroModalidad: ', filtroModalidad);
-        //console.log('que ingresa por filtroRegion: ', filtroRegion);
+        console.log('que ingresa por filtroRegion: ', filtroRegion);
         let data;
         const limit=10;
         //console.log('que trae id_listado getVacantesDisponiblesMov: ', id_listado);
         if(id_listado){
             
             data = await fetchAllVacantesTit(id_listado,limit,page, filtroAsignacion, filtroEspecialidad, valorBusqueda, filtroModalidad, filtroRegion);
-            //console.log('que trae data de fetchAllVacantesTit: ', data);
+            console.log('que trae data de fetchAllVacantesTit: ', data);
 
             if(data.result?.length!=0){
                 setListadoVacantesTit(data.result); 
@@ -726,22 +726,22 @@ const VacantesTitDocentes = () => {
 
                     {/* PARTE INFERIOR DE DATOS DE TABLA */}
                     <div className=" desktop:h-[70vh] movil:h-[63vh] overflow-y-auto overflow-x-auto">
-                        <table className="border-[1px] bg-slate-50 desktop:w-full movil:w-[300%]">
+                        <table className="border-[1px] bg-slate-50 desktop:w-full movil:w-[100%]">
                             <thead>
                                 <tr className="sticky top-0 text-sm border-b-[2px] border-zinc-400 bg-zinc-200">
-                                    <th className="w-[1vw] border-r-[1px] border-zinc-300">ID</th>
+                                    <th className="w-[1vw] border-r-[1px] border-zinc-300 movil:hidden desktop:flex">ID</th>
+                                    <th className="w-[10vw]">.</th>
                                     <th className="w-[1vw] border-r-[1px] border-zinc-300">Orden</th>
-                                    <th className="w-[20vw] border-r-[1px] border-zinc-300">Establecimiento</th>
+                                    <th className="w-[20vw] border-r-[1px] border-zinc-300">Escuela</th>
                                     {/*<th className="w-[5vw] border-r-[1px] border-zinc-300">Mapa</th>*/}
                                     <th className="w-[5vw] border-r-[1px] border-zinc-300">Cargo</th>
                                     <th className="w-[10vw] border-r-[1px] border-zinc-300">Caracter</th>
-                                    <th className="w-[10vw] border-r-[1px] border-zinc-300">Hasta</th>
-                                    <th className="w-[5vw] border-r-[1px] border-zinc-300">Modalidad</th>
-                                    <th className="w-[6vw] border-r-[1px] border-zinc-300">Turno</th>
+                                    <th className="w-[10vw] border-r-[1px] border-zinc-300 movil:hidden desktop:flex">Hasta</th>
+                                    <th className="w-[5vw] border-r-[1px] border-zinc-300">Mod</th>
+                                    <th className="w-[6vw] border-r-[1px] border-zinc-300 movil:hidden desktop:flex">Turno</th>
                                     <th className="w-[5vw] border-r-[1px] border-zinc-300">Region</th>
-                                    <th className="w-[20vw] border-r-[1px] border-zinc-300">Localidad</th>
-                                    <th className="w-[5vw] border-r-[1px] border-zinc-300">Zona</th>
-                                    <th className="w-[10vw]">Acciones</th>
+                                    <th className="w-[20vw] border-r-[1px] border-zinc-300 movil:hidden desktop:flex desktop:flex-col">Localidad</th>
+                                    <th className="w-[5vw] border-r-[1px] border-zinc-300 movil:hidden desktop:flex desktop:flex-col">Zona</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -752,26 +752,10 @@ const VacantesTitDocentes = () => {
                                         const colorFila = vacante.datetime_asignacion ?`bg-red-200` :''
                                         return(
                                             <tr 
-                                                className={`text-lg font-medium border-b-[1px] border-black h-[5vh] hover:bg-orange-300 ${colorFila}`}
-                                                key={index}
+                                            className={`text-lg font-medium border-b-[1px] border-black h-[5vh] hover:bg-orange-300 ${colorFila}`}
+                                            key={index}
                                             >
-                                                <td className="w-[2vw] pl-[4px] font-light text-sm">{vacante.id_vacante_tit}</td>
-                                                <td className="w-[2vw] text-center">{vacante.orden}</td>
-                                                {/*<td className="w-[20vw] text-center">{vacante.nro_establecimiento} - {vacante.nombre_establecimiento}</td>*/}
-                                                <td className="w-[20vw] text-center text-base">
-                                                    <span className="text-red-500">{vacante.nro_establecimiento}</span> - 
-                                                    <span>{vacante.nombre_establecimiento}</span>
-                                                </td>
-                                                {/*<td className="w-[5vw] text-center text-purple-700"></td>*/}
-                                                <td className="w-[5vw] text-center text-purple-700">{vacante.cargo}</td>
-                                                <td className="w-[10vw] text-center text-red-500">{vacante.caracter}</td>
-                                                {/*<td className="w-[10vw] text-center text-red-500 text-sm font-stretch-extra-condensed ">{vacante.hasta_observacion}</td>*/}
-                                                <td className="w-[10vw] text-center text-red-500 text-sm font-stretch-extra-condensed ">{vacante.hasta ?vacante.hasta.replace(/\d{2}:\d{2}:\d{2}$/, "").trim() :""}</td>
-                                                <td className="w-[5vw] text-center">{vacante.modalidad}</td>
-                                                <td className="w-[6w] text-center">{vacante.turno}</td>
-                                                <td className="w-[5vw] text-center w-[10vw]">{vacante.region}</td>
-                                                <td className="w-[20vw] text-center">{vacante.localidad}</td>
-                                                <td className="w-[5vw] text-center">{vacante.zona}</td>
+                                                <td className="w-[2vw] pl-[4px] font-light text-sm movil:hidden desktop:flex">{vacante.id_vacante_tit}</td>
                                                 <td>
                                                     <div className="flex flex-row items-center justify-center  ">
                                                         <FaEye 
@@ -790,6 +774,22 @@ const VacantesTitDocentes = () => {
                                                         */}
                                                     </div>
                                                 </td>
+                                                <td className="w-[2vw] text-center movil:text-sm desktop:text-lg">{vacante.orden}</td>
+                                                {/*<td className="w-[20vw] text-center">{vacante.nro_establecimiento} - {vacante.nombre_establecimiento}</td>*/}
+                                                <td className="w-[20vw] text-center text-base">
+                                                    {/*<span className="text-red-500">{vacante.nro_establecimiento}</span> - */}
+                                                    <span>{vacante.nombre_establecimiento}</span>
+                                                </td>
+                                                {/*<td className="w-[5vw] text-center text-purple-700"></td>*/}
+                                                <td className="w-[5vw] text-center text-purple-700">{vacante.cargo}</td>
+                                                <td className="w-[10vw] text-center text-red-500 text-sm">{vacante.caracter}</td>
+                                                {/*<td className="w-[10vw] text-center text-red-500 text-sm font-stretch-extra-condensed ">{vacante.hasta_observacion}</td>*/}
+                                                <td className="w-[10vw] text-center text-red-500 text-sm font-stretch-extra-condensed movil:hidden desktop:flex">{vacante.hasta ?vacante.hasta.replace(/\d{2}:\d{2}:\d{2}$/, "").trim() :""}</td>
+                                                <td className="w-[5vw] text-center">{vacante.modalidad}</td>
+                                                <td className="w-[6w] text-center movil:hidden desktop:flex">{vacante.turno}</td>
+                                                <td className="w-[5vw] text-center w-[10vw]">{vacante.region}</td>
+                                                <td className="w-[20vw] text-center movil:hidden desktop:flex">{vacante.localidad}</td>
+                                                <td className="w-[5vw] text-center movil:hidden desktop:flex">{vacante.zona}</td>
                                             </tr>
                                         )
                                     })

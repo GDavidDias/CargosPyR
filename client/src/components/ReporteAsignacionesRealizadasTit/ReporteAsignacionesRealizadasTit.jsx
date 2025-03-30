@@ -16,15 +16,15 @@ const ReporteAsignacionesRealizadasTit = ({listado})=>{
 
     function formatDateOnly(dateString) {
         const date = new Date(dateString);
-        
+
         const day = String(date.getDate()).padStart(2, '0');
         const month = String(date.getMonth() + 1).padStart(2, '0'); // Los meses empiezan desde 0
         const year = date.getFullYear();
-      
+
         const hours = String(date.getHours()).padStart(2, '0');
         const minutes = String(date.getMinutes()).padStart(2, '0');
         const seconds = String(date.getSeconds()).padStart(2, '0');
-      
+
         return `${day}/${month}/${year}`;
       };
 
@@ -73,8 +73,8 @@ const ReporteAsignacionesRealizadasTit = ({listado})=>{
                                 <td className="border-x-[1px] border-gray-500">{item.caracter}</td>
                                 {/*<td className="border-x-[1px] border-gray-500">{formatDesde}</td>*/}
                                 {/*<td className="border-x-[1px] border-gray-500">{formatHasta}</td>*/}
-                                <td className="border-x-[1px] border-gray-500">{item.desde_observacion}</td>
-                                <td className="border-x-[1px] border-gray-500">{item.hasta_observacion}</td>
+                                <td className="border-x-[1px] border-gray-500">{item.desde}</td>
+                                <td className="border-x-[1px] border-gray-500">{item.hasta}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.cupof}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.nombre_establecimiento}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.region}</td>

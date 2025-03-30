@@ -18,19 +18,17 @@ import ReporteEstadoInscriptosTit from "../ReporteEstadoInscriptosTit/ReporteEst
 import ReporteVacantesDisponiblesTit from "../ReporteVacantesDisponiblesTit/ReporteVacantesDisponiblesTit";
 
 const ListadosTit = () => {
-
     const componentRef = useRef(null);
     const navigate = useNavigate();
     //EstadosGlogales
     const configSG = useSelector((state)=> state.config);
     const userSG = useSelector((state)=> state.user);
 
+
     //E.L guardo el id del listado de vacantes
     const[idListVacMov,setIdListVacMov]=useState();
-    
     const[listado, setlistado]=useState([]);
     const[listadoFormat, setlistadoFormat]=useState([]);
-
     const[reporte, setReporte]=useState('');
 
 
@@ -158,7 +156,10 @@ const ListadosTit = () => {
             'Departamento':objeto.departamento, 
             'Localidad':objeto.localidad, 
             'Zona':objeto.zona, 
-            'Resolucion':objeto.resolucion
+            'Resolucion':objeto.resolucion,
+            'Caracter':objeto.caracter,
+            'Desde':objeto.desde,
+            'Hasta':objeto.hasta
         }));
         return datosformat;
     };
@@ -205,8 +206,8 @@ const ListadosTit = () => {
             'Caracter':objeto.caracter,
             //'Desde':formatDateOnly(objeto.desde_observacion),
             //'Hasta':formatDateOnly(objeto.hasta_observacion),
-            'Desde':objeto.desde_observacion,
-            'Hasta':objeto.hasta_observacion,
+            'Desde':objeto.desde,
+            'Hasta':objeto.hasta,
             'Cupof':objeto.cupof,
             'N° Escuela que Toma':objeto.nombre_establecimiento, 
             'Region':objeto.region,
@@ -219,6 +220,8 @@ const ListadosTit = () => {
         return datosformat;
     };
 
+    //console.log para formatear Estado Inscriptos
+    //
 
     function formateaListadoEstadoInscriptos (datos){
         const datosformat = datos.map(objeto=>({

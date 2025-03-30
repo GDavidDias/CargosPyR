@@ -16,6 +16,9 @@ const ReporteVacantesDisponiblesTit = ({listado})=>{
                         <th className="border-x-[1px] border-gray-500">Localidad</th>
                         <th className="border-x-[1px] border-gray-500">Zona</th>
                         <th className="border-x-[1px] border-gray-500">Resolucion</th>
+                        <th className="border-x-[1px] border-gray-500">Caracter</th>
+                        <th className="border-x-[1px] border-gray-500">Desde</th>
+                        <th className="border-x-[1px] border-gray-500">Hasta</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +37,9 @@ const ReporteVacantesDisponiblesTit = ({listado})=>{
                                 <td className="border-x-[1px] border-gray-500">{item.localidad}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.zona}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.resolucion}</td>
+                                <td className="border-x-[1px] border-gray-500">{item.caracter}</td>
+                                <td className="border-x-[1px] border-gray-500">{item.desde}</td>
+                                <td className="border-x-[1px] border-gray-500">{item.hasta}</td>
                             </tr>
                         ))
                     }

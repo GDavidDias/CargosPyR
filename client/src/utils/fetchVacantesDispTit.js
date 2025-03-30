@@ -11,7 +11,7 @@ export const fetchVacantesDispTit = async(id_listado,limit,page,valorBusqueda,fi
         "filtroEspecialidad":filtroEspecialidad,
         "orderBy":orderBy
     };
-    //console.log('que tiene datos que pasa a body en fetchVacantesDispTit: ', dataBody);
+    console.log('que tiene datos que pasa a body en fetchVacantesDispTit: ', dataBody);
 
 
     try{

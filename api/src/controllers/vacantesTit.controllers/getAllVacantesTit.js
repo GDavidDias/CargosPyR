@@ -7,14 +7,14 @@ module.exports = async(req,res)=>{
     console.log('que trae limit: ', limit);
     console.log('que trae page: ', page);
     console.log('que trae filtroAsignacion: ', filtroAsignacion);
-    console.log('que trae filtroEspecialidad: ', filtroEspecialidad);
+    //console.log('que trae filtroEspecialidad: ', filtroEspecialidad);
     console.log('que trae filtroBusqueda: ', filtroBusqueda);
     console.log('que trae filtroRegion: ', filtroRegion);
     console.log('que trae filtroModalidad: ', filtroModalidad);
 
     const offset = (page-1)*limit;
 
-    let armaquery=`SELECT vt.id_vacante_tit, vt.id_listado_vac_tit, vt.orden, vt.nro_establecimiento, vt.nombre_establecimiento, vt.region, vt.departamento, vt.localidad, vt.cargo, vt.turno, vt.modalidad, vt.cupof, vt.id_especialidad, vt.datetime_creacion, vt.obs_desactiva, vt.zona, vt.resolucion, vt.caracter, vt.motivo_cobertura, vt.desde, vt.hasta, vt.hasta_observacion, at2.datetime_asignacion , at2.id_estado_asignacion, e.cue, e.link_map, vt.desde_observacion
+    let armaquery=`SELECT vt.id_vacante_tit, vt.id_listado_vac_tit, vt.orden, vt.nro_establecimiento, vt.nombre_establecimiento, vt.region, vt.departamento, vt.localidad, vt.cargo, vt.turno, vt.modalidad, vt.cupof, vt.id_especialidad, vt.datetime_creacion, vt.obs_desactiva, vt.zona, vt.resolucion, vt.caracter, vt.motivo_cobertura, vt.desde, vt.hasta, at2.datetime_asignacion , at2.id_estado_asignacion, e.cue, e.link_map
             FROM vacantes_tit AS vt
             LEFT JOIN (SELECT at.id_vacante_tit, at.datetime_asignacion , at.id_estado_asignacion FROM asignacion_tit AS at WHERE at.obs_desactiva IS NULL) AS at2 ON vt.id_vacante_tit = at2.id_vacante_tit
             LEFT JOIN escuelas AS e ON vt.nro_establecimiento = e.numero_escuela
@@ -58,7 +58,7 @@ module.exports = async(req,res)=>{
             ) `
         }
     };
-    
+
     /**Filtro de Region, debe ser exacto no traer I, II, III, etc si busco I */
     if(filtroRegion && filtroRegion!=''){
         armaquery += ` AND (LOWER(vt.region) LIKE '${filtroRegion.toLowerCase()}' ) `
@@ -77,14 +77,14 @@ module.exports = async(req,res)=>{
         }
     }else{
         armaquery+= ` ORDER BY vt.id_vacante_tit ASC`
-    }
+    };
 
     try{
         console.log('como ARMA QUERY getAllVacantesTit: ', armaquery);
 
         const [result] = await pool.query(`${armaquery} LIMIT ${limit} OFFSET ${offset}`);
 
-        //console.log('que trae result getAllVacantesTit: ', result);
+        console.log('que trae result getAllVacantesTit: ', result);
 
         const [totalRows]= await pool.query(`SELECT COUNT(*) AS count FROM (${armaquery}) AS vacantes`)
 

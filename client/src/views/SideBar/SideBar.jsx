@@ -144,10 +144,10 @@ const SideBar = () => {
     },[pageSG,nivelSG,configCompSG])
 
     useEffect(()=>{
-        //console.log('que tiene userSG: ', userSG);
+        console.log('que tiene userSG: ', userSG);
         if(userSG.username===''){
             navigate('/');
-        }else if(userSG.username==='invitadoIni'){ //modificar para invitadosPri
+        }else if(userSG.username==='invitadoPri'){ //modificar para invitadosPri
             dispatch(setPage('VacantesTitDocentes'));
             /**
              if(userSG.permiso===3){

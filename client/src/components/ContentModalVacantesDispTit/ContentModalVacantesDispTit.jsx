@@ -105,7 +105,7 @@ const ContentModalVacantesDispTit = ({datosInscriptoSelect,submitCloseModalVac,l
                             {/* <LuArrowUpDown className="ml-2"/> */}
                         </div>
                         <div className="flex flex-col items-center justify-end w-[10vw] border-r-[1px] border-zinc-200">
-                            <label className="font-semibold">Establecimiento</label>
+                            <label className="font-semibold">Escuela</label>
                             {/* <LuArrowUpDown className="ml-2"/> */}
                         </div>
                         <div className="flex flex-col items-center justify-end w-[10vw] border-r-[1px] border-zinc-200">
@@ -147,11 +147,11 @@ const ContentModalVacantesDispTit = ({datosInscriptoSelect,submitCloseModalVac,l
                             {/* <LuArrowUpDown className="ml-2"/> */}
                         </div>
                         <div className="flex flex-col items-center justify-end w-[10vw] border-r-[1px] border-zinc-200">
-                            <label className="font-semibold">Departamento</label>
+                            <label className="font-semibold">Dep.</label>
                             {/* <LuArrowUpDown className="ml-2"/> */}
                         </div>
                         <div className="flex flex-col items-center justify-end w-[10vw] border-r-[1px] border-zinc-200">
-                            <label className="font-semibold">Localidad</label>
+                            <label className="font-semibold">Loc.</label>
                             {/* <LuArrowUpDown className="ml-2"/> */}
                         </div>
                         <div className="flex flex-col items-center justify-center w-[8vw] ">
@@ -176,6 +176,9 @@ const ContentModalVacantesDispTit = ({datosInscriptoSelect,submitCloseModalVac,l
                                 }
                             </div>
                             <label className="font-semibold">Modalidad</label>
+                        </div>
+                        <div className="flex flex-col items-center justify-end w-[10vw] border-r-[1px] border-zinc-200">
+                            <label className="font-semibold">Motivo</label>
                         </div>
                         <div className="flex flex-col items-center justify-end w-[10vw] border-r-[1px] border-zinc-200">
                             <label className="font-semibold">Hasta</label>
@@ -217,6 +220,7 @@ const ContentModalVacantesDispTit = ({datosInscriptoSelect,submitCloseModalVac,l
                                             <td className="w-[10vw] pl-[4px] text-center">{vacante.departamento}</td>
                                             <td className="w-[10vw] pl-[4px] text-center">{vacante.localidad}</td>
                                             <td className="w-[8vw] pl-[4px] text-center">{vacante.modalidad}</td>
+                                            <td className="w-[8vw] pl-[4px] text-center text-xs text-sky-500">{vacante.motivo_cobertura}</td>
                                             {/*<td className="w-[8vw] pl-[4px] text-center text-red-500">{vacante.hasta ? (() => {
                                                 const fecha = new Date(vacante.hasta).toLocaleDateString('es-ES');
                                                     return fecha === '1/1/2000' ? '' : fecha;
