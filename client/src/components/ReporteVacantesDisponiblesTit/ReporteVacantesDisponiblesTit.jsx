@@ -38,8 +38,8 @@ const ReporteVacantesDisponiblesTit = ({listado})=>{
                                 <td className="border-x-[1px] border-gray-500">{item.zona}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.resolucion}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.caracter}</td>
-                                <td className="border-x-[1px] border-gray-500">{item.desde}</td>
-                                <td className="border-x-[1px] border-gray-500">{item.hasta}</td>
+                                <td className="border-x-[1px] border-gray-500">{item.desde_observacion}</td>
+                                <td className="border-x-[1px] border-gray-500">{item.hasta_observacion}</td>
                             </tr>
                         ))
                     }

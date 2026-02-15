@@ -13,9 +13,9 @@ export const userSlice = createSlice({
     initialState,
     reducers:{
         setUser:(state,action) => {
-            //console.log('que ingresa a userSlice: ', action.payload);
-            const{id, nombre, username,permiso,nivel} = action.payload[0];
-            state.id_user=id;
+            console.log('que ingresa a userSlice: ', action.payload);
+            const{id_usuario, nombre, username,permiso,nivel} = action.payload[0];
+            state.id_user=id_usuario;
             state.nombre=nombre;
             state.username=username;
             state.permiso=permiso;

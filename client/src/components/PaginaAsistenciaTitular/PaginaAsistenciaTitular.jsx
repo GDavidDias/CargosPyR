@@ -45,11 +45,11 @@ const PaginaAsistenciaTitular = ({datosInscripto,id_nivel})=>{
                 </div>
                 <div className='flex flex-row mb-2'>
                     <p className='ml-2  italic'>de Cargos de Reemplazantes y Provisionales",</p>
-                    <p className='ml-2  italic'>  el/los dias: </p>
-                    <p className='border-b-[1px] border-black border-dotted w-[300px] text-center font-medium'></p>
+                    <p className='ml-2  italic'>  el {dia} de {mes} de {año} </p>
+                    {/*<p className='border-b-[1px] border-black border-dotted w-[300px] text-center font-medium'></p>*/}
                 </div>
                 <div className='flex flex-row mb-2 mt-10'>
-                    <p className='border-b-[1px] border-black border-dotted w-[500px] text-center font-medium'></p>
+                    {/*<p className='border-b-[1px] border-black border-dotted w-[500px] text-center font-medium'></p>*/}
                 </div>
                 <div className='flex flex-row mb-4 justify-center'>
                     <p className='ml-2  '>Se extiende la misma para ser presentada ante las autoridades que la requieran.</p>

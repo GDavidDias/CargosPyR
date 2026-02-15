@@ -4,14 +4,14 @@ module.exports = async(req, res)=>{
     //CREA UNA ASIGNACION DE UN INSCRIPTO A UNA VACANTE
     //EN UNA PRIMERA INSTANCIA SOLO SE CREA LA ASINGACION
     //VER SI SE DEBE MODIFICAR LA ASIGNACION
-    const{id_vacante_tit, id_inscripto_tit, datetime_asignacion} = req.body;
+    const{id_vacante_tit, id_inscripto_tit, datetime_asignacion, id_usuario_asigna} = req.body;
     
     console.log('que trae id_vacante_tit: ', id_vacante_tit);
     console.log('que trae id_inscripto_tit: ', id_inscripto_tit);
     console.log('que trae datetime_asignacion: ', datetime_asignacion);
-
+    console.log('que trae id_usuario_asigna: ', id_usuario_asigna);
     try{
-        const result = await pool.query(`INSERT INTO asignacion_tit(id_vacante_tit, id_inscripto_tit, datetime_asignacion) VALUES(${id_vacante_tit}, ${id_inscripto_tit}, '${datetime_asignacion}'); `);
+        const result = await pool.query(`INSERT INTO asignacion_tit(id_vacante_tit, id_inscripto_tit, datetime_asignacion, id_usuario_asigna) VALUES(${id_vacante_tit}, ${id_inscripto_tit}, '${datetime_asignacion}', ${id_usuario_asigna}); `);
 
         const [rows] = await pool.query('SELECT LAST_INSERT_ID() AS id_asignacion_tit');
         const id_asignacion_tit = rows[0].id_asignacion_tit;

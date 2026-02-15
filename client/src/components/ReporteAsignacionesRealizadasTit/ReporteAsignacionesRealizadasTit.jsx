@@ -73,10 +73,10 @@ const ReporteAsignacionesRealizadasTit = ({listado})=>{
                                 <td className="border-x-[1px] border-gray-500">{item.caracter}</td>
                                 {/*<td className="border-x-[1px] border-gray-500">{formatDesde}</td>*/}
                                 {/*<td className="border-x-[1px] border-gray-500">{formatHasta}</td>*/}
-                                <td className="border-x-[1px] border-gray-500">{item.desde}</td>
-                                <td className="border-x-[1px] border-gray-500">{item.hasta}</td>
+                                <td className="border-x-[1px] border-gray-500">{item.desde_observacion}</td>
+                                <td className="border-x-[1px] border-gray-500">{item.hasta_observacion}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.cupof}</td>
-                                <td className="border-x-[1px] border-gray-500">{item.nombre_establecimiento}</td>
+                                <td className="border-x-[1px] border-gray-500">{item.nro_escuela_toma} - {item.nombre_establecimiento}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.region}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.departamento}</td>
                                 <td className="border-x-[1px] border-gray-500">{item.localidad}</td>

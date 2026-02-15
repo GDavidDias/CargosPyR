@@ -59,7 +59,6 @@ const ContentModalVerVacante = ({idVacante,formVacante,closeModal,handleChangeFo
                             />
                         </div>
 
-
                     </div>
                     <div className="flex flex-col ml-2  items-end justify-end">
                         <div className="flex flex-row my-[2px] mx-2 items-center">
@@ -188,7 +187,6 @@ const ContentModalVerVacante = ({idVacante,formVacante,closeModal,handleChangeFo
                             />
                         </div>
                     </div>
-                    
 
                 </div>
                 }                

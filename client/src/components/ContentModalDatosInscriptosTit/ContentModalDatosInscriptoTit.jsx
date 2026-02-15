@@ -2,7 +2,8 @@ import { IoMdPrint } from "react-icons/io";
 import { IoTrash } from "react-icons/io5";
 
 const ContentModalDatosInscriptoTit =({datosFormInscripto,datosInscriptoSelect,idInscriptoSelect,closeModal,handleChangeFormInscripto,formEstadoInscripto,submitGuardarFormInscripto,cargoAsignado,procesoImpresion,submitEliminarTomaCargo, procesoImpresionAsistencia, handleCancelDatosInscriptoTit,userSG})=>{
-    //console.log('ingreso a ContentModalDatosInscriptoTit');
+    console.log('ingreso a ContentModalDatosInscriptoTit');
+    console.log('que tiene userSG: ', userSG);
     return(
         <div className="notranslate h-100 w-100 flex flex-col items-center">
             <label 
@@ -113,7 +114,7 @@ const ContentModalDatosInscriptoTit =({datosFormInscripto,datosInscriptoSelect,i
                         <div className="flex flex-row ">
                             <div className="w-[20%] "></div>
                             <div className="w-[60%] ">
-                                <label className="text-xl text-center font-bold text-green-700" translate='no'>Vacante que Titularizó</label>
+                                <label className="text-xl text-center font-bold text-green-700" translate='no'>Vacante Asignada</label>
                             </div>
                             <div className="flex flex-row w-[20%] justify-end">
                                 <button className="font-bold text-xl mr-2 hover:text-sky-500 hover:scale-150 transition-all duration-500">
@@ -163,8 +164,8 @@ const ContentModalDatosInscriptoTit =({datosFormInscripto,datosInscriptoSelect,i
                                 <div className=" border-[1px] border-zinc-500 rounded w-[70mm] h-[4vh] pl-[4px] bg-neutral-50">{cargoAsignado.localidad}</div>
                             </div>
                             <div className="text-start my-[4px] mx-2 flex flex-row items-center">
-                                <label className="font-semibold text-sm mr-2">Zona:</label>
-                                <div className=" border-[1px] border-zinc-500 rounded w-[70mm] h-[4vh] pl-[4px] bg-neutral-50">{cargoAsignado.zona}</div>
+                                <label className="font-semibold text-sm mr-2">Hasta:</label>
+                                <div className=" border-[1px] border-zinc-500 rounded w-[70mm] h-[4vh] pl-[4px] bg-neutral-50">{cargoAsignado.hasta_observacion}</div>
                             </div>
                         </div>  
                     </div>

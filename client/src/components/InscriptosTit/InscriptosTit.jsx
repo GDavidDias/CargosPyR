@@ -404,9 +404,10 @@ const InscriptosTit = () =>{
         const formAsignacionTit={
             id_vacante_tit:datosVacante.id_vacante_tit,
             id_inscripto_tit:datosInscriptoSelect.id_inscriptos_tit,
-            datetime_asignacion:fechaHoraActual
+            datetime_asignacion:fechaHoraActual,
+            id_usuario_asigna: userSG.id_user
         };
-        //console.log('como queda body a enviar createasignaciontit: ', formAsignacionTit);
+        console.log('como queda body a enviar createasignaciontit: ', formAsignacionTit);
 
         //ASIGNACION
         await axios.post(`${URL}/api/createasignaciontit`,formAsignacionTit)

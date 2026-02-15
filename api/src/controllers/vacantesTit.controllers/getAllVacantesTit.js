@@ -14,7 +14,7 @@ module.exports = async(req,res)=>{
 
     const offset = (page-1)*limit;
 
-    let armaquery=`SELECT vt.id_vacante_tit, vt.id_listado_vac_tit, vt.orden, vt.nro_establecimiento, vt.nombre_establecimiento, vt.region, vt.departamento, vt.localidad, vt.cargo, vt.turno, vt.modalidad, vt.cupof, vt.id_especialidad, vt.datetime_creacion, vt.obs_desactiva, vt.zona, vt.resolucion, vt.caracter, vt.motivo_cobertura, vt.desde, vt.hasta, at2.datetime_asignacion , at2.id_estado_asignacion, e.cue, e.link_map
+    let armaquery=`SELECT vt.id_vacante_tit, vt.id_listado_vac_tit, vt.orden, vt.nro_establecimiento, vt.nombre_establecimiento, vt.region, vt.departamento, vt.localidad, vt.cargo, vt.turno, vt.modalidad, vt.cupof, vt.id_especialidad, vt.datetime_creacion, vt.obs_desactiva, vt.zona, vt.resolucion, vt.caracter, vt.motivo_cobertura, vt.desde, vt.hasta, vt.desde_observacion, vt.hasta_observacion, at2.datetime_asignacion , at2.id_estado_asignacion, e.cue, e.link_map
             FROM vacantes_tit AS vt
             LEFT JOIN (SELECT at.id_vacante_tit, at.datetime_asignacion , at.id_estado_asignacion FROM asignacion_tit AS at WHERE at.obs_desactiva IS NULL) AS at2 ON vt.id_vacante_tit = at2.id_vacante_tit
             LEFT JOIN escuelas AS e ON vt.nro_establecimiento = e.numero_escuela

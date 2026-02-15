@@ -7,12 +7,18 @@ const PaginaDesignacionTitular = ({datosInscripto, datosVacante,id_nivel}) =>{
     console.log('que ingresa por datosInscripto: ', datosInscripto);
     console.log('que ingresa por datosVacante: ', datosVacante);
 
-    const fechaActual = new Date();
+    const fechaActual = new Date(datosVacante.datetime_asignacion);
     const dia = fechaActual.getDate();
     const mes = fechaActual.toLocaleString('es-ES',{month:'long'});
     const año = fechaActual.getFullYear();
 
-    const horaActual = new Date().toLocaleString('es-ES',{
+    {/*const fechaActual = new Date();
+    const dia = fechaActual.getDate();
+    const mes = fechaActual.toLocaleString('es-ES',{month:'long'});
+    const año = fechaActual.getFullYear();
+    */}
+
+    const horaActual = new Date(datosVacante.datetime_asignacion).toLocaleString('es-ES',{
         hour:'2-digit',
         minute:'2-digit',
         second:'2-digit',
@@ -105,7 +111,7 @@ const PaginaDesignacionTitular = ({datosInscripto, datosVacante,id_nivel}) =>{
                     </div>
                     <div className='flex flex-row mt-[2px]'>
                         <p>INSTITUCION DE DESTINO:</p>
-                        <p className='border-b-[1px] border-black w-[400px] text-center'>{datosVacante.nombre_establecimiento}</p>
+                        <p className='border-b-[1px] border-black w-[400px] text-center'>{datosVacante.nro_establecimiento} - {datosVacante.nombre_establecimiento}</p>
                     </div>
                     <div className='flex flex-row mt-[2px]'>
                         <p>CARGO:</p>
@@ -118,16 +124,16 @@ const PaginaDesignacionTitular = ({datosInscripto, datosVacante,id_nivel}) =>{
                     <div className='flex flex-row mt-[2px]'>
                         <p>DESDE:</p>
                         {/*<p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.desde ? new Date(datosVacante.desde).toLocaleDateString('es-ES') : ''}</p>*/}
-                        {/*<p className='border-b-[1px] border-black w-[200px] text-center text-sm'>{datosVacante.desde_observacion}</p>*/}
-                        <p className='border-b-[1px] border-black w-[200px] text-center text-sm'>{datosVacante.desde ?datosVacante.desde.replace(/\d{2}:\d{2}:\d{2}$/, "").trim() :""}</p>
+                        <p className='border-b-[1px] border-black w-[200px] text-center text-sm'>{datosVacante.desde_observacion}</p>
+                        {/*<p className='border-b-[1px] border-black w-[200px] text-center text-sm'>{datosVacante.desde ?datosVacante.desde.replace(/\d{2}:\d{2}:\d{2}$/, "").trim() :""}</p>*/}
                         <p>HASTA:</p>
                         {/*<p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.hasta ? (() => {
                                 const fecha = new Date(datosVacante.hasta).toLocaleDateString('es-ES');
                                 return fecha === '1/1/2000' ? '' : fecha;
                             })() : ''}
                         </p>*/}
-                        {/*<p className='border-b-[1px] border-black w-[350px] text-center text-sm '>{datosVacante.hasta_observacion}</p>*/}
-                        <p className='border-b-[1px] border-black w-[350px] text-center text-sm '>{datosVacante.hasta ?datosVacante.hasta.replace(/\d{2}:\d{2}:\d{2}$/, "").trim() :""}</p>
+                        <p className='border-b-[1px] border-black w-[350px] text-center text-sm '>{datosVacante.hasta_observacion}</p>
+                        {/*<p className='border-b-[1px] border-black w-[350px] text-center text-sm '>{datosVacante.hasta ?datosVacante.hasta.replace(/\d{2}:\d{2}:\d{2}$/, "").trim() :""}</p>*/}
 
                     </div>
                     
@@ -138,8 +144,9 @@ const PaginaDesignacionTitular = ({datosInscripto, datosVacante,id_nivel}) =>{
             </div>
             {/* PIE IMPRESION */}
             
-            <div className='flex flex-row h-[12vh] justify-center items-end '>
-                {/*<p className='text-base font-semibold w-[200px] border-t-[1px] border-gray-600 text-center'>Firma y Sello</p>*/}
+            <div className='flex flex-row h-[18vh] justify-start items-end '>
+                <p className='text-[0.7rem] font-semibold border-[1px] border-b-gray-500'>Nota: </p>
+                <p className='text-[0.7rem] border-[1px] border-b-gray-500'>La presente queda sujeta a la Resolución de sumarios, recursos, impugnaciones u observaciones conforme lo prevee la normativa vigente.</p>
             </div>
             
         </div>
