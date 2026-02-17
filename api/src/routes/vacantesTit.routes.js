@@ -8,7 +8,9 @@ const {
     delVacanteTit,
     createVacanteTit,
     getAllVacantesFiltroAsignacionTit,
-    getVacantesDispTit
+    getVacantesDispTit,
+    getHayNulosTit,
+    getDocenteProcesoAsignacion
 }= require('../controllers/vacantesTit.controllers');
 
 const router = Router();
@@ -37,5 +39,10 @@ router.post('/vacantesasignatit', getAllVacantesFiltroAsignacionTit);
 //trae todas las vacantes disponibles
 router.post('/vacantesdisptit', getVacantesDispTit);
 
+//Trae si hay nulos en estado movimiento
+router.post('/haynulostit', getHayNulosTit);
+
+//Trae el docente proximo en el orden de inscripcion que esta en proceso de asignacion
+router.post('/docenteProcesoAsignacion', getDocenteProcesoAsignacion);
 
 module.exports = router;

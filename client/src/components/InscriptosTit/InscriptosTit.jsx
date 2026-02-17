@@ -25,6 +25,8 @@ import { fetchVacanteAsignadaTit } from "../../utils/fetchVacanteAsignadaTit";
 import { updateEstadoAsignadoInscripto } from "../../utils/updateEstadoAsignadoInscripto";
 import { updEstadoAsignadoInscriptoTit } from "../../utils/updateEstadoAsignadoInscriptoTit";
 import PaginaAsistenciaTitular from "../PaginaAsistenciaTitular/PaginaAsistenciaTitular";
+import { RiProgress6Line } from "react-icons/ri";
+import { IoLocateSharp } from "react-icons/io5";
 
 const InscriptosTit = () =>{
     
@@ -115,6 +117,10 @@ const InscriptosTit = () =>{
     const[filtroModalidadVac, setFiltroModalidadVac]=useState('');
 
     const isIntervalActive = useSelector((state)=>state.interval.isIntervalActive);
+
+    const[habilitaAsigna, setHabilitaAsigna]=useState(true);
+    const[docenteProcesoAsignacion, setDocenteProcesoAsignacion]=useState("");
+    const[dniDocenteProcesoAsignacion, setDniDocenteProcesoAsignacion]=useState(0);
 
     //-------------------------------------
     //      PROCEDIMIENTOS Y FUNCIONES
@@ -224,6 +230,7 @@ const InscriptosTit = () =>{
     const handleInputSearchChange = (event) =>{
         const {value} = event.target;
         setInputSearch(value);
+        setCurrentPage(1);
     };
 
     //Presiono boton Cancelar (X) dentro de input busqueda
@@ -342,8 +349,15 @@ const InscriptosTit = () =>{
         setFiltroEspecialidadVac("");
     };
 
-    const submitVerVacantes = (datosInscripto) =>{
+    const submitVerVacantes = async (datosInscripto) =>{
         console.log('que tiene datosInscriptos: ', datosInscripto);
+
+        //?VALIDA SI ESTA HABILITADO PARA ASIGNACION
+        //const habilitaAsigna = await habilitadoAsignacion(datos?.id_inscriptos_mov);
+
+        console.log('esta habilitado ?: ', await habilitaAsigna);
+
+
         //setCurrentPageVac(1);
         if(!(datosInscripto.tomo_cargo===null || datosInscripto.tomo_cargo==='')){
             console.log('YA TOMO CARGO');
@@ -386,8 +400,10 @@ const InscriptosTit = () =>{
         setInputSearchVac('');
     };
 
-    //?-------------------------------------
-    //?--------PROCESO ASIGNACION-----------
+    //?-----------------------------------------------------------
+    //?--------  PROCESO ASIGNACION  ----------------------------
+    //?-----------------------------------------------------------
+
     const submitVerAsignacion = async(datosVacanteSeleccionada)=>{
         console.log('presiono ver la asignacion');
         console.log('que tiene datos Vacante seleccionada: ', datosVacanteSeleccionada);
@@ -409,9 +425,11 @@ const InscriptosTit = () =>{
         };
         console.log('como queda body a enviar createasignaciontit: ', formAsignacionTit);
 
-        //ASIGNACION
+        //? REALIZO ASIGNACION
         await axios.post(`${URL}/api/createasignaciontit`,formAsignacionTit)
             .then(async res=>{
+                //Antes de continuar Actualizo el ESTADO DEL INSCRIPTO A: 1-"Asignado"
+                await updateEstadoAsignadoInscripto(datosInscriptoSelect.id_inscriptos_tit, 1);
                 //console.log('que trae res de createasignaciontit: ', res);
                 setMensajeModalConfirm('Asignacion Realizada, ¿imprime designacion?')
                 openModalConfirm();
@@ -494,6 +512,8 @@ const InscriptosTit = () =>{
         try{
             await axios.post(`${URL}/api/delasignaciontit/${idAsignacion}`,datosBody)
             .then(async res=>{
+                //Si se elimina la Asignacion, se debe volver a Actualizar el Estado del Inscrpto a NULL
+                await updateEstadoAsignadoInscripto(datosInscriptoSelect.id_inscriptos_tit, null);
                 //console.log('que trae res de delasignaciontit: ', res);
 
                 //Actualizo Estado de Asignacion de Insripto
@@ -514,7 +534,10 @@ const InscriptosTit = () =>{
         getInscriptosTit(idListadoInscriptosTit,currentPage,estadoInscripto,inputSearch,selectFiltroEspecialidad);
     };
 
+    //?-----------------------------------------------------------------------------
     //?------   PROCESOS PARA GUARDAR ESTADO INSCRIPTOS  ---------------------------
+    //?-----------------------------------------------------------------------------
+
     const HandleSelectEstadoAsignadoInscripto=(event)=>{
         const{value} = event.target;
         //console.log('que viene en handleSelectEstadoAsignadoInscripto: ', value);
@@ -581,7 +604,120 @@ const InscriptosTit = () =>{
         setCurrentPage(1);
     };
 
-    //?--------------------------------------------------
+    //?--------------------------------------------------------------------------------------
+    //?----PROCESO PARA CONTROLAR SI EL INSCRIPTO ESTA HABILITADO PARA REALIZAR ASIGNACION
+    //?--------------------------------------------------------------------------------------
+    const habilitadoAsignacion = async(datosInscripto) =>{
+        console.log('ingresa a habilitadoAsignacion');
+        //Proceso para controlar si el inscripto puede realizar asignacion
+        //Si el id_titular ya tiene una asignacion o un estado de inscripto
+        //no puede realizar asignacion
+        console.log('que tiene datosInscripto en habilitadoAsignacion: ', datosInscripto);
+
+        const datosBody={
+            "id_listado": idListadoInscriptosTit,
+            "idTitular": datosInscripto.id_inscriptos_tit,
+            "id_especialidad": datosInscripto.id_especialidad
+        };
+
+        console.log('que tiene datosBody haynulostit: ', datosBody);
+
+        //BUSCA SI HAY NULOS EN ESTADO DE MOVIMIENTO
+        await axios.post(`${URL}/api/haynulostit`,datosBody)
+        .then(async res=>{
+            //TRAE DATOS
+            console.log('que trae res de haynulostit: ', res.data[0]);
+            const resHayNulosTit = await res.data[0];
+            console.log('que tiene resHayNulosTit: ', resHayNulosTit);
+            if(resHayNulosTit?.apellido){
+                console.log('NO ESTA HABILITADO PARA ASIGNACION');
+                setHabilitaAsigna(false);
+                setDocenteProcesoAsignacion(resHayNulosTit.apellido);
+                setDniDocenteProcesoAsignacion(resHayNulosTit.dni);
+                return false;
+            }else{
+                console.log('SI ESTA HABILITADO PARA ASIGNACION');
+                setHabilitaAsigna(true);
+                setDocenteProcesoAsignacion("");
+                setDniDocenteProcesoAsignacion(0);
+                return true;
+            };
+            //setHabilitaAsigna(resHayNulosMov===1 ?false :true);
+        })
+        .catch(error=>{
+            //INGRESA A ERRORES
+            console.log('que trae error editinscriptosmov: ', error);
+        });
+    };
+
+    //?-------------------------------------------------
+    //?-  PROCESO DE CAMBIO DE ESTADO DE INSCRIPTO POR BOTON A AUSENTE
+    //?-------------------------------------------------
+    const submitGuardarEstadoInscriptoButton=async(datosInscripto)=>{
+        //console.log('que tiene estadoAsignadoInscripto: ', estadoAsignadoInscripto)
+        try{
+            const datosUpdateEstado = await updEstadoAsignadoInscriptoTit(datosInscripto.id_inscriptos_tit, 4); //4= Ausente
+            //console.log('que trae datosUpdateEstado: ', datosUpdateEstado)
+            setMensajeModalInfo('Estado del Inscripto Actualizado');
+            openModal();
+            setEstadoAsignadoInscripto('');
+        }catch(error){
+            console.log('error en updateEstadoAsignadoInscripto', error);
+        }
+    };
+
+
+    //?-----------------------------------------------------------------
+    //?  -  -  -  BUSQUEDA DE PAGINA POR DNI EN LISTADO DE INSCRIPTOS TITULARES
+    //?---------------------------------------------------------------
+    const handleSearchDni = async (inputDni) => {
+        console.log('INGRESA A handleSearchDni con inputDni: ', inputDni);
+        //const {value} = event.target;
+        //setCurrentPage(1);
+        //setInputSearchDni(inputDni);
+        if (!inputDni) return;
+        setInputSearch(''); // Limpia el input de búsqueda regular
+
+        const datosBody={
+            id_listado_inscriptos: idListadoInscriptosTit,
+            limit: paginacion.limit,         // 10  
+            //idTipoInscripto: (tipoInscripto==1) ?'1' :'2,3,4',  // 1= activos, 2=disponibilidad
+            filtroAsignacion: estadoInscripto,
+            //idListadoInscriptosCompara: idListadoInscriptosMovCompara,
+            idEspecialidadLuom: selectFiltroEspecialidad,
+            dniBuscado: inputDni         // 👈 DNI del input
+        };
+        console.log('que tiene datosBody para buscar pagina por dni: ', datosBody);
+
+        try {
+            const datosRes = await axios.post(`${URL}/api/getpagednimov`, datosBody);
+
+            console.log('que trae data de getpagednimov: ', datosRes.data);
+
+            if (!datosRes.data.ok || !datosRes.data.found) {
+            alert(datosRes.data.message || 'No se encontró el DNI');
+            return;
+            }
+
+            // Ir a la página donde está el DNI
+            //handlePageChange(data.page);
+            setCurrentPage(datosRes.data.page);
+
+            // (opcional) guardar el DNI para resaltar la fila cuando se cargue
+            //setDniSeleccionado(inputSearch);
+        } catch (err) {
+            console.error(err);
+            alert('Error al buscar el DNI');
+        }
+    };
+
+    //?---------------------------------------------------------------
+    //?  -  -  -  USEEFFECTS
+    //?---------------------------------------------------------------
+
+    useEffect(()=>{ 
+        console.log('que tiene habilitaAsigna: ', habilitaAsigna);
+    },[habilitaAsigna]);
 
     useEffect(()=>{
         //console.log('que tiene EstadoAsignadoInscriptos: ', estadoAsignadoInscripto);
@@ -632,10 +768,19 @@ const InscriptosTit = () =>{
         const intervalId = setInterval(()=>{
             //console.log('ACTIVO INTERVALO')
             getInscriptosTit(idListadoInscriptosTit,currentPage,estadoInscripto,inputSearch,selectFiltroEspecialidad);
+
+            //PARA CONTROLAR SI ESTA HABILITADO PARA ASIGNACION
+            console.log('que tiene datosInscriptoSelect: ', datosInscriptoSelect);
+            if(datosInscriptoSelect?.id_inscriptos_tit){
+                //console.log('verifico si esta habilitado para asignacion');
+                const idTitular = datosInscriptoSelect.id_inscriptos_tit;
+                habilitadoAsignacion(datosInscriptoSelect);
+            };
         }, 5000);
+
         
         return()=>clearInterval(intervalId);
-    },[isIntervalActive,currentPage,estadoInscripto,inputSearch,selectFiltroEspecialidad])
+    },[isIntervalActive,currentPage,estadoInscripto,inputSearch,selectFiltroEspecialidad,datosInscriptoSelect])
 
 
     //AL INGRESAR SE CARGA EL LISTADO DE INSCRIPTOS
@@ -733,6 +878,19 @@ const InscriptosTit = () =>{
                                 onClick={()=>{setEstadoInscripto('asignados');setCurrentPage(1)}}
                             >Asignados</label>
                         </div>
+                        {/** PROXIMO DOCENTE EN PROCESO */}
+                        <div className="text-sm italic text-red-500 font-bold w-[50%] flex justify-end mr-4">
+                            {(habilitaAsigna===false) && (
+                                <>
+                                    <span>En proceso de asignación: {docenteProcesoAsignacion}</span>
+                                    <IoLocateSharp   
+                                        className="hover:cursor-pointer hover:text-[#83F272] blink ml-2 text-emerald-600" 
+                                        title="Ubicar DNI"
+                                        onClick={()=>handleSearchDni(dniDocenteProcesoAsignacion)}
+                                    />
+                                </>
+                            )}
+                        </div>
 
                         {/* Campo de Busqueda */}
                         <div className="w-[50%]  flex justify-end">
@@ -796,7 +954,20 @@ const InscriptosTit = () =>{
                                                 {/*<td className="text-sm font-sans font-light text-center text-blue-800 ">{inscripto.tomo_cargo}</td>*/}
                                                 <td className="text-sm font-sans font-light text-center text-blue-800 ">{inscripto.observaciones}</td>
                                                 <td>{inscripto.tomo_cargo}</td>
-                                                <td>{inscripto.descripcion_estado_inscripto}</td>
+                                                <td
+                                                    className={`text-sm text-center
+                                                        ${(inscripto.descripcion_estado_inscripto=='Ausente')
+                                                            ?`text-red-500`
+                                                            : ''
+                                                        }
+                                                    `}
+                                                >{(inscripto.descripcion_estado_inscripto=='' || inscripto.descripcion_estado_inscripto == null)
+                                                    ?<RiProgress6Line className="mr-2  blink text-red-500 cursor-pointer" 
+                                                        title="Cambia Estado a Ausente"
+                                                        onClick={()=>submitGuardarEstadoInscriptoButton(inscripto)}
+                                                        />
+                                                    :inscripto.descripcion_estado_inscripto
+                                                    }</td>
                                                 <td>
                                                     <div className="flex flex-row items-center justify-center  ">
                                                         {/* {(inscripto.vacante_asignada===null )
@@ -810,12 +981,22 @@ const InscriptosTit = () =>{
                                                             title="Ver Datos"
                                                             onClick={()=>submitVerDatosInscripto(inscripto)}
                                                         />
+                                                        {(inputSearch!='')&&
+                                                        <IoLocateSharp   
+                                                            className="hover:cursor-pointer hover:text-[#83F272] blink ml-2 text-emerald-600" 
+                                                            title="Ubicar DNI"
+                                                            onClick={()=>handleSearchDni(inscripto.dni)}
+                                                        />
+                                                        }
                                                         {
                                                             ((inscripto.vacante_asignada===null || inscripto.vacante_asignada==='') && userSG.permiso!=4)
                                                             ?<BiTransferAlt 
                                                                 className="text-2xl hover:cursor-pointer hover:text-[#83F272] ml-2"      
                                                                 title="Vacantes"
-                                                                onClick={()=>submitVerVacantes(inscripto)}
+                                                                onClick={()=>{
+                                                                    habilitadoAsignacion(inscripto);
+                                                                    submitVerVacantes(inscripto);
+                                                                }}
                                                             />
                                                             :``
                                                         }
@@ -893,6 +1074,9 @@ const InscriptosTit = () =>{
                     handleSelectFiltroModalidad={handleSelectFiltroModalidad}
                     filtroModalidadVac={filtroModalidadVac}
                     handleCancelFiltroModalidadVac={handleCancelFiltroModalidadVac}
+                    /**PROCESO PARA VALIDAR OTRA ASIGNACION CON MAYOR PUNTAJE */
+                    habilitaAsigna={habilitaAsigna}
+                    docenteProcesoAsignacion={docenteProcesoAsignacion}
                 />
             </ModalEdit>
 

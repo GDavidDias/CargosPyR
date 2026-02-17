@@ -6,6 +6,8 @@ const delVacanteTit = require('./delVacanteTit.js');
 const createVacanteTit = require('./createVacanteTit.js');
 const getAllVacantesFiltroAsignacionTit = require('./geAllVacantesFiltroAsignacionTit.js');
 const getVacantesDispTit = require('./getVacantesDispTit.js');
+const getHayNulosTit = require('./getHayNulosTit.js');
+const getDocenteProcesoAsignacion = require('./getDocenteProcesoAsignacion.js');
 
 module.exports = {
     getAllVacantesTit,
@@ -15,5 +17,7 @@ module.exports = {
     delVacanteTit,
     createVacanteTit,
     getAllVacantesFiltroAsignacionTit,
-    getVacantesDispTit
+    getVacantesDispTit,
+    getHayNulosTit,
+    getDocenteProcesoAsignacion
 };

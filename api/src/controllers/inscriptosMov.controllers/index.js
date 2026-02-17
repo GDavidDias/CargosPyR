@@ -5,6 +5,7 @@ const validateDniAsignado = require('./validateDniAsignado.js');
 const updateEstadoAsignadoInscripto = require('./updateEstadoAsignadoInscripto.js');
 const validateLegajoAsignado = require('./validaLegajoAsignado.js');
 const validateLegajoDisponibilidad = require('./validaLegajoDisponibilidad.js');
+const getPageInscriptosMovPorDni = require('./getPageInscriptosMovPorDni.js');
 
 module.exports={
     getAllInscriptosMov,
@@ -13,5 +14,6 @@ module.exports={
     validateDniAsignado,
     updateEstadoAsignadoInscripto,
     validateLegajoAsignado,
-    validateLegajoDisponibilidad
+    validateLegajoDisponibilidad,
+    getPageInscriptosMovPorDni
 }

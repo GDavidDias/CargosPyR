@@ -2,37 +2,52 @@ import { BiTransferAlt } from "react-icons/bi";
 import { TbSortAscending , TbSortDescending } from "react-icons/tb";
 import Paginador from "../Paginador/Paginador";
 import { FaDotCircle, FaSearch, FaEye, FaTimes, FaEdit} from "react-icons/fa";
+import { FiAlertTriangle } from "react-icons/fi";
 
-const ContentModalVacantesDispTit = ({datosInscriptoSelect,submitCloseModalVac,listadoVacantesDispTit,currentPageVac,paginacionVac,handlePageChangeVac,inputSearchVac,handleInputSearchVacChange,handleCancelSearchVac,submitVerAsignacion, listadoEspecialidades, filtroEspecialidadVac, handleSelectFiltroEspecialidadVac, handleCancelFiltroEspecialidadVac, estadoAsignadoInscripto, setEstadoAsignadoInscripto, HandleSelectEstadoAsignadoInscripto, submitGuardarEstadoInscripto, submitEliminarSubFiltros, handleSelectFiltroRegion, filtroRegionVac, handleCancelFiltroRegionVac, handleSelectFiltroModalidad, filtroModalidadVac, handleCancelFiltroModalidadVac}) =>{
+const ContentModalVacantesDispTit = ({datosInscriptoSelect,submitCloseModalVac,listadoVacantesDispTit,currentPageVac,paginacionVac,handlePageChangeVac,inputSearchVac,handleInputSearchVacChange,handleCancelSearchVac,submitVerAsignacion, listadoEspecialidades, filtroEspecialidadVac, handleSelectFiltroEspecialidadVac, handleCancelFiltroEspecialidadVac, estadoAsignadoInscripto, setEstadoAsignadoInscripto, HandleSelectEstadoAsignadoInscripto, submitGuardarEstadoInscripto, submitEliminarSubFiltros, handleSelectFiltroRegion, filtroRegionVac, handleCancelFiltroRegionVac, handleSelectFiltroModalidad, filtroModalidadVac, handleCancelFiltroModalidadVac, habilitaAsigna,docenteProcesoAsignacion}) =>{
     return(
         <div className="notranslate h-100 w-100 flex flex-col items-center">
             <label 
                 className="text-2xl text-center font-bold flex flex-row items-center mb-2" 
                 translate='no'
             >Vacantes Disponibles<p className="text-sm font-light ml-2"></p></label>
+
             {/* DATOS DEL INSCRIPTO */}
-            <div className="flex justify-center  font-bold text-xl">
-                <div className="border-[1px] border-zinc-300 rounded-md shadow ">
-                    <label className="mx-4 text-zinc-500">Docente: {datosInscriptoSelect.apellido} {datosInscriptoSelect.nombre}</label>
-                    {/* <label className="mr-4 text-red-400">Cargo Origen: {datosInscriptoSelect.cargo_actual}</label>
-                    <label className="mr-4 text-sky-500">Cargo Solicitado: {datosInscriptoSelect.cargo_solicitado}</label> */}
-                    <label className="mr-4 text-zinc-500">DNI: {datosInscriptoSelect.dni}</label>
-                    <label className="mr-4 text-sky-500">Puntaje: {datosInscriptoSelect.total}</label>
-                </div>
-                <div className="ml-2 flex flex-row items-center">
-                    <label className="text-lg desktop-xl:text-lg font-bold">Estado: </label>
-                    <div className="ml-2 border-[1px] border-zinc-400  flex justify-center rounded-md shadow font-semibold text-base desktop-xl:text-lg">
-                        <select 
-                            className="focus:outline-none rounded-md"
-                            value={estadoAsignadoInscripto}
-                            onChange={HandleSelectEstadoAsignadoInscripto}
-                        >
-                            <option value='' disabled selected>Seleccione...</option>
-                            <option value={2}>No Asignado</option>
-                            <option value={4}>Ausente</option>
-                        </select>
+            <div className="flex flex-col justify-center  font-bold text-xl">
+                <div className="flex flex-row">
+                    <div className="border-[1px] border-zinc-300 rounded-md shadow ">
+                        <label className="mx-4 text-zinc-500">Docente: {datosInscriptoSelect.apellido} {datosInscriptoSelect.nombre}</label>
+                        {/* <label className="mr-4 text-red-400">Cargo Origen: {datosInscriptoSelect.cargo_actual}</label>
+                        <label className="mr-4 text-sky-500">Cargo Solicitado: {datosInscriptoSelect.cargo_solicitado}</label> */}
+                        <label className="mr-4 text-zinc-500">DNI: {datosInscriptoSelect.dni}</label>
+                        <label className="mr-4 text-sky-500">Puntaje: {datosInscriptoSelect.total}</label>
+                    </div>
+                    <div className="ml-2 flex flex-row items-center">
+                        <label className="text-lg desktop-xl:text-lg font-bold">Estado: </label>
+                        <div className="ml-2 border-[1px] border-zinc-400  flex justify-center rounded-md shadow font-semibold text-base desktop-xl:text-lg">
+                            <select 
+                                className="focus:outline-none rounded-md"
+                                value={estadoAsignadoInscripto}
+                                onChange={HandleSelectEstadoAsignadoInscripto}
+                            >
+                                <option value='' disabled selected>Seleccione...</option>
+                                <option value={2}>No Asignado</option>
+                                <option value={4}>Ausente</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
+                {/* AVISO: ALERTA DE ASIGNACION EN PROCESO V2*/}
+                {(habilitaAsigna===false)
+                    ?<div className="flex flex-row items-center justify-center mt-2">
+                        <FiAlertTriangle  className="mr-2 text-xl desktop-xl:text-3xl  text-red-500"/>
+                        <div className="border-[2px] border-red-500 flex flex-row justify-center rounded-md shadow font-semibold text-lg bg-yellow-200 mb-2 desktop-xl:text-xl animate-parpadeoborde">
+                            <label className="mx-2">{`Espere, docente ${docenteProcesoAsignacion} con mayor puntaje en proceso de Asignacion `}</label>
+                        </div>
+                        {/* <FiAlertTriangle  className="ml-2 text-xl desktop-xl:text-3xl blink text-red-500"/> */}
+                    </div>
+                    :``
+                }
             </div>
             <div className="h-[63vh] w-[90vw] mt-2 ">
                 {/* DATOS DE VACANTES */}
@@ -237,7 +252,12 @@ const ContentModalVacantesDispTit = ({datosInscriptoSelect,submitCloseModalVac,l
                                                         //onClick={()=>submitVerDatosInscripto(inscripto)}
                                                     /> */}
                                                     <BiTransferAlt 
-                                                        className="text-2xl hover:cursor-pointer hover:text-[#83F272]"      title="Asignacion"
+                                                        className={`text-2xl hover:cursor-pointer hover:text-[#83F272] 
+                                                                ${(habilitaAsigna===false) 
+                                                                    ?` hidden ` 
+                                                                    :` flex` }
+                                                                    `}    
+                                                        title="Asignacion"
                                                         onClick={()=>submitVerAsignacion(vacante)}
                                                     />
                                                 </div>
