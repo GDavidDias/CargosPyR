@@ -777,7 +777,6 @@ const InscriptosTit = () =>{
                 habilitadoAsignacion(datosInscriptoSelect);
             };
         }, 5000);
-
         
         return()=>clearInterval(intervalId);
     },[isIntervalActive,currentPage,estadoInscripto,inputSearch,selectFiltroEspecialidad,datosInscriptoSelect])
@@ -879,7 +878,7 @@ const InscriptosTit = () =>{
                             >Asignados</label>
                         </div>
                         {/** PROXIMO DOCENTE EN PROCESO */}
-                        <div className="text-sm italic text-red-500 font-bold w-[50%] flex justify-end mr-4">
+                        {/*<div className="text-sm italic text-red-500 font-bold w-[50%] flex justify-end mr-4">
                             {(habilitaAsigna===false) && (
                                 <>
                                     <span>En proceso de asignación: {docenteProcesoAsignacion}</span>
@@ -890,7 +889,7 @@ const InscriptosTit = () =>{
                                     />
                                 </>
                             )}
-                        </div>
+                        </div>*/}
 
                         {/* Campo de Busqueda */}
                         <div className="w-[50%]  flex justify-end">

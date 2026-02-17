@@ -25,10 +25,13 @@ const PaginaAsistenciaTitular = ({datosInscripto,id_nivel})=>{
                 
             </div>
             {/* TITULO */}
-            <div className='flex justify-center my-4'>
+            <div className='flex flex-col items-center justify-center'>
                 <label
-                    className='font-semibold text-lg my-2 underline '
+                    className='font-semibold text-lg mt-2 underline '
                 >CONSTANCIA DE ASISTENCIA</label>
+                <label
+                    className='font-bold mb-4'
+                >INSTANCIA GENERAL PROVINCIAL</label>
             </div>
             {/* CUERPO */}
             <div className=''>

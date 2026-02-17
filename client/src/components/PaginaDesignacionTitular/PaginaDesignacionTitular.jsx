@@ -56,18 +56,21 @@ const PaginaDesignacionTitular = ({datosInscripto, datosVacante,id_nivel}) =>{
                 
             </div>
             {/* TITULO */}
-            <div className='flex justify-center'>
+            <div className='flex flex-col items-center justify-center'>
                 <label
-                    className='font-bold text-lg my-2 underline '
+                    className='font-bold text-lg mt-2 underline '
                 >CONSTANCIA DE DESIGNACION</label>
+                <label
+                    className='font-bold    '
+                >INSTANCIA GENERAL PROVINCIAL</label>
             </div>
             {/* CUERPO */}
             <div>
                 <div className='flex flex-col items-start'>
                     {/* <p className='text-justify indent-8'>JPCD - Sala Primaria hace constar que el/la Prof.  DNI N°   con el cargo         de la    con un puntaje     , Acepta el        en el cargo de     Titular en     . correspondiente al turno      </p> */}
                     <div className='flex flex-row mb-[4px]'>
-                        <p>RESOLUCION N°:</p>   
-                        <p className='border-b-[1px] border-black w-[300px] text-center'>{datosVacante.resolucion}</p>
+                        {/*<p>RESOLUCION N°:</p>   
+                        <p className='border-b-[1px] border-black w-[300px] text-center'>{datosVacante.resolucion}</p>*/}
                     </div>
                     <div className='flex flex-row'>
                         <p>FECHA: {dia} de {mes} de {año}</p>
@@ -102,7 +105,7 @@ const PaginaDesignacionTitular = ({datosInscripto, datosVacante,id_nivel}) =>{
                     <div className='flex flex-row'>
                         <p>NUMERO DE CARGO: </p>
                         <p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.orden}</p>
-                        <p>MOVIMIENTO:</p>
+                        <p>CARACTER:</p>
                         <p className='border-b-[1px] border-black w-[130px] text-center'>{datosVacante.caracter}</p>
                         <p>CUPOF:</p>
                         <p className='border-b-[1px] border-black w-[50px] text-center'>{datosVacante.cupof}</p>

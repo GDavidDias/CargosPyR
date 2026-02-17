@@ -18,6 +18,7 @@ import VacantesTitDocentes from "../../components/VacantesTit/VacantesTitDocente
 import VacantesTitDocentesInicial from "../../components/VacantesTit/VacantesTitDocentesInicial";
 import VacantesPyR from "../../components/VacantesPyR/VacantesPyR";
 import ListadosPR from "../../components/ListadosPR/ListadosPR";
+import VisorAsignacionesPyR from "../../components/VisorAsignacionesPyR/VisorAsignacionesPyR";
 
 const Home = () =>{
     const dispatch = useDispatch();
@@ -73,6 +74,9 @@ const Home = () =>{
                 break;
             case 'ListadosPyR': //Pantalla de LISTADOS de PROVISIONALES y REEMPLAZANTES
                 setContent(<ListadosPR/>);
+                break;
+            case 'VisorAsignacionesPyR': //Pantalla de LISTADOS de PROVISIONALES y REEMPLAZANTES
+                setContent(<VisorAsignacionesPyR/>);
                 break;
         }
     },[pageSG]);

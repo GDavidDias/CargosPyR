@@ -100,6 +100,12 @@ const SideBar = () => {
         dispatch(setPage('ListadosPyR'))
     };
 
+    const submitVisorAsignacionesPyR = () =>{
+        //
+        console.log('Presiona en Visor Asignaciones PyR');
+        dispatch(setPage('VisorAsignacionesPyR'))
+    };
+
     const submitConfigPage = () =>{
         //
         console.log('Presiona sobre Configuracion');
@@ -380,6 +386,23 @@ const SideBar = () => {
                             <label className="font-light desktop-xl:text-lg">Visor Vacantes Inicial</label>
                         </div>
                     }
+
+                    {/**ENLACE A VISOR DE ASIGNACIONES DE PYR */}
+                    {( userSG.permiso!=4 && configCompSG[11]?.active=="1") &&
+                        <div 
+                            className={` rounded p-[4px] flex flex-row justify-start items-center
+                                ${(pageSG==='VisorAsignacionesPyR')
+                                ?'bg-[#C9D991] text-[#7C8EA6]'
+                                :'hover:bg-[#C9D991]'
+                            }
+                                `}
+                            onClick={()=>submitVisorAsignacionesPyR()}
+                        >
+                            <CgList className="text-xl font-bold mr-2"/>
+                            <label className="font-light desktop-xl:text-lg">Visor Asignaciones</label>
+                        </div>
+                    }
+
                 </div>
 
 
@@ -436,6 +459,8 @@ const SideBar = () => {
                             <label className="font-light desktop-xl:text-lg">Listados PR</label>
                         </div>
                     }
+
+                    
                 </div>
 
 
